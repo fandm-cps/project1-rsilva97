@@ -3,9 +3,6 @@ CFLAGS = -Wall
 DEBUG = -DDEBUG -g  #-D means to define a macro name
 COVERAGE = --coverage 
 
-#CATCHINC = -I/Users/jbooth1/courses/cs3/fall2017/unit_testing/Catch-master/single_include
-
-
 all: main 
 
 
@@ -29,3 +26,5 @@ coverage: Vector_Unit.cpp Vector.cpp
 
 clean:
 	rm *.o; rm main; VectorDebug
+
+#CATCHINC = -I/Users/jbooth1/courses/cs3/fall2017/unit_testing/Catch-master/single_include
