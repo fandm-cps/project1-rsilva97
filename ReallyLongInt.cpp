@@ -10,13 +10,14 @@ ReallyLongInt::ReallyLongInt(long long num){
     
     if(num < 0){
         isNeg = true;
+        num = num*(-1);
     }
     else{
         isNeg = false;
     }
 
     size = log2(num)+1;
-    *digits = vector<bool>(size, isNeg); //deleted new, added *
+    digits = new vector<bool>(size, isNeg); 
 
     long long i = num;
     long long index = 0;
@@ -35,6 +36,14 @@ ReallyLongInt::ReallyLongInt(long long num){
     }
 
     reverse(digits->begin(), digits->end());
+
+
+    /*for(int z = 0; z < size; z++)
+    {
+        cout << (*digits)[z] << " ";
+    }
+    cout << endl;*/
+
 }
 
 ReallyLongInt::ReallyLongInt(const string& numStr){
@@ -42,13 +51,14 @@ ReallyLongInt::ReallyLongInt(const string& numStr){
     
     if(num < 0){
         isNeg = true;
+        num = num*(-1);
     }
     else{
         isNeg = false;
     }
 
     size = log2(num)+1;
-    *digits = vector<bool>(size, isNeg);
+    digits = new vector<bool>(size, isNeg);
 
     long long i = num;
     long long index = 0;
@@ -67,6 +77,12 @@ ReallyLongInt::ReallyLongInt(const string& numStr){
     }
 
     reverse(digits->begin(), digits->end());
+
+    /*for(int z = 0; z < size; z++)
+    {
+        cout << (*digits)[z] << " ";
+    }
+    cout << endl;*/
 }       
 
 ReallyLongInt::ReallyLongInt(const ReallyLongInt& other){
@@ -75,28 +91,32 @@ ReallyLongInt::ReallyLongInt(const ReallyLongInt& other){
     digits = new vector<bool>(size, isNeg);
 
     for(long long i = 0; i < size; ++i){
-        digits[i] = other.digits[i];
+        (*digits)[i] = (*other.digits)[i];
     } 
 }
 
 ReallyLongInt::~ReallyLongInt(){
     //cout << "Invoking destructor, clearing up" << endl;
 
-    delete [] digits;
+    delete digits;
 }
 
 //Returns a string representation of the number stored in base 10
 string ReallyLongInt::toString() const{
 
     long long sum = 0;
+    long long loc = size-1;
 
     for(long long i=0; i < size; ++i){
-
+        //cout << (*digits)[i] << "next" << " " << size <<endl;
         if((*digits)[i] == true){
-            sum += pow(2, (size-(i+1)));
+            sum += pow(2, loc);
+        
         }
+        loc--;
 
     }
+    //cout << " num: " << sum << endl;
 
     //cout<<"toString: "<<to_string(sum) << endl;
     string result = to_string(sum);
@@ -105,7 +125,7 @@ string ReallyLongInt::toString() const{
         result = "-" + result;
     }
 
-    cout << "String: " << result << endl;
+    //cout << "String: " << result << endl;
     
     return result;
 }
@@ -160,7 +180,6 @@ bool ReallyLongInt::greater(const ReallyLongInt& other) const{
     if(isNeg && !other.isNeg){
         return false;
     }
-
     return true;
     
 }
