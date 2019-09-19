@@ -110,14 +110,14 @@ TEST_CASE("Testing ReallyLongInt Class"){
         test_otherPos = new ReallyLongInt(*test_rliPos);
 
         REQUIRE(test_otherNeg->greater(*test_rli) == false);
- /*       REQUIRE(test_otherPos->greater(*test_rliPos) == false);
+        REQUIRE(test_otherPos->greater(*test_rliPos) == false);
         REQUIRE(test_otherPos->greater(*test_otherNeg) == true);
         REQUIRE(test_rliPos->greater(*test_rliNeg) == true);
         REQUIRE(test_rliPos->greater(*test_otherPos) == false);
         REQUIRE(test_rliNeg->greater(*test_otherNeg) == true); 
         REQUIRE(test_rliNeg->greater(*test_otherNeg) == true);
         REQUIRE(test_rliPos->greater(*test_otherNeg) == true);
-*/
+
         delete test_rli;
         delete test_rliNeg;
         delete test_rliPos;
