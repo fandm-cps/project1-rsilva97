@@ -1,0 +1,1117 @@
+        -:    0:Source:/usr/include/c++/7/bits/stl_construct.h
+        -:    0:Graph:ReallyLongInt_TEST.gcno
+        -:    0:Data:-
+        -:    0:Runs:0
+        -:    0:Programs:0
+        -:    1:// nonstandard construct and destroy functions -*- C++ -*-
+        -:    2:
+        -:    3:// Copyright (C) 2001-2017 Free Software Foundation, Inc.
+        -:    4://
+        -:    5:// This file is part of the GNU ISO C++ Library.  This library is free
+        -:    6:// software; you can redistribute it and/or modify it under the
+        -:    7:// terms of the GNU General Public License as published by the
+        -:    8:// Free Software Foundation; either version 3, or (at your option)
+        -:    9:// any later version.
+        -:   10:
+        -:   11:// This library is distributed in the hope that it will be useful,
+        -:   12:// but WITHOUT ANY WARRANTY; without even the implied warranty of
+        -:   13:// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        -:   14:// GNU General Public License for more details.
+        -:   15:
+        -:   16:// Under Section 7 of GPL version 3, you are granted additional
+        -:   17:// permissions described in the GCC Runtime Library Exception, version
+        -:   18:// 3.1, as published by the Free Software Foundation.
+        -:   19:
+        -:   20:// You should have received a copy of the GNU General Public License and
+        -:   21:// a copy of the GCC Runtime Library Exception along with this program;
+        -:   22:// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+        -:   23:// <http://www.gnu.org/licenses/>.
+        -:   24:
+        -:   25:/*
+        -:   26: *
+        -:   27: * Copyright (c) 1994
+        -:   28: * Hewlett-Packard Company
+        -:   29: *
+        -:   30: * Permission to use, copy, modify, distribute and sell this software
+        -:   31: * and its documentation for any purpose is hereby granted without fee,
+        -:   32: * provided that the above copyright notice appear in all copies and
+        -:   33: * that both that copyright notice and this permission notice appear
+        -:   34: * in supporting documentation.  Hewlett-Packard Company makes no
+        -:   35: * representations about the suitability of this software for any
+        -:   36: * purpose.  It is provided "as is" without express or implied warranty.
+        -:   37: *
+        -:   38: *
+        -:   39: * Copyright (c) 1996,1997
+        -:   40: * Silicon Graphics Computer Systems, Inc.
+        -:   41: *
+        -:   42: * Permission to use, copy, modify, distribute and sell this software
+        -:   43: * and its documentation for any purpose is hereby granted without fee,
+        -:   44: * provided that the above copyright notice appear in all copies and
+        -:   45: * that both that copyright notice and this permission notice appear
+        -:   46: * in supporting documentation.  Silicon Graphics makes no
+        -:   47: * representations about the suitability of this software for any
+        -:   48: * purpose.  It is provided "as is" without express or implied warranty.
+        -:   49: */
+        -:   50:
+        -:   51:/** @file bits/stl_construct.h
+        -:   52: *  This is an internal header file, included by other library headers.
+        -:   53: *  Do not attempt to use it directly. @headername{memory}
+        -:   54: */
+        -:   55:
+        -:   56:#ifndef _STL_CONSTRUCT_H
+        -:   57:#define _STL_CONSTRUCT_H 1
+        -:   58:
+        -:   59:#include <new>
+        -:   60:#include <bits/move.h>
+        -:   61:#include <ext/alloc_traits.h>
+        -:   62:
+        -:   63:namespace std _GLIBCXX_VISIBILITY(default)
+        -:   64:{
+        -:   65:_GLIBCXX_BEGIN_NAMESPACE_VERSION
+        -:   66:
+        -:   67:  /**
+        -:   68:   * Constructs an object in existing memory by invoking an allocated
+        -:   69:   * object's constructor with an initializer.
+        -:   70:   */
+        -:   71:#if __cplusplus >= 201103L
+        -:   72:  template<typename _T1, typename... _Args>
+        -:   73:    inline void
+function _ZSt10_ConstructISt10shared_ptrIN5Catch22CumulativeReporterBaseINS1_13JunitReporterEE4NodeINS1_12TestRunStatsENS5_INS1_14TestGroupStatsENS5_INS1_13TestCaseStatsENS4_11SectionNodeEEEEEEEEJSD_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt4pairINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_EJS7_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt4pairIccEJS1_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt4pairINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_EJRKS7_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructINSt7__cxx1112regex_traitsIcE10_RegexMaskEJRKS3_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt4pairIccEJRKS1_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructINSt7__cxx1112regex_traitsIcE10_RegexMaskEJS3_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt4pairIlSt6vectorINSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS2_12basic_stringIcSt11char_traitsIcESaIcEEEEEEESaISE_EEEJSH_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructINSt8__detail6_StateIcEEJRKS2_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructINSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS0_12basic_stringIcSt11char_traitsIcESaIcEEEEEEEJRKSC_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructINSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS0_12basic_stringIcSt11char_traitsIcESaIcEEEEEEEJRSC_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructINSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS0_12basic_stringIcSt11char_traitsIcESaIcEEEEEEEJSC_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt4pairIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEiEJEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructINSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS0_12basic_stringIcSt11char_traitsIcESaIcEEEEEEEJEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt10unique_ptrIN5Catch18IStreamingReporterESt14default_deleteIS2_EEJS5_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt10shared_ptrIN5Catch22CumulativeReporterBaseINS1_13JunitReporterEE4NodeINS1_14TestGroupStatsENS5_INS1_13TestCaseStatsENS4_11SectionNodeEEEEEEJSB_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt10shared_ptrIN5Catch22CumulativeReporterBaseINS1_13JunitReporterEE4NodeINS1_13TestCaseStatsENS4_11SectionNodeEEEEJS9_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt10shared_ptrIN5Catch22CumulativeReporterBaseINS1_13JunitReporterEE11SectionNodeEEJS6_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch14AssertionStatsEJRKS1_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch13SummaryColumnEJS1_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch11SectionInfoEJS1_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt10shared_ptrIN5Catch8TestSpec7PatternEEJRKS4_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt10shared_ptrIN5Catch8TestSpec7PatternEEJS4_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch9StringRefEJS1_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt10unique_ptrINSt7__cxx1119basic_ostringstreamIcSt11char_traitsIcESaIcEEESt14default_deleteIS6_EEJS9_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt10unique_ptrIKN5Catch20IExceptionTranslatorESt14default_deleteIS3_EEJS6_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt10unique_ptrIN5Catch6Detail8EnumInfoESt14default_deleteIS3_EEJS6_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch5clara6detail11HelpColumnsEJS3_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch8TestSpec6FilterEJS2_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt10shared_ptrIN5Catch16TestCaseTracking8ITrackerEEJS4_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructINSt15__exception_ptr13exception_ptrEJS1_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch13ScopedMessageEJS1_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch14SectionEndInfoEJS1_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt10shared_ptrIN5Catch16IReporterFactoryEEJS3_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch11MessageInfoEJS1_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch5clara6detail11HelpColumnsEJRS3_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch5clara6detail3OptEJS3_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch5clara6detail3ArgEJS3_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch5clara6detail5TokenEJS3_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEJRKPKcEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch5clara8TextFlow6ColumnEJS3_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch12_GLOBAL__N_110ColumnInfoEJRKS2_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch8TestSpec11FilterMatchEJEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch8TestCaseEJS1_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructISt4pairIiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEJS7_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEJS5_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch5clara6detail3ArgEJRKS3_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch5clara6detail3OptEJRKS3_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch5clara6detail11HelpColumnsEJRKS3_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch5clara6detail5TokenEJEEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch5clara8TextFlow6Column8iteratorEJS4_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch8TestCaseEJRKS1_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch5clara6detail3ArgEJRS3_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch5clara6detail3OptEJRS3_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEJRS5_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch8TestSpec6FilterEJRKS2_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch11MessageInfoEJRKS1_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEJRKS5_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch5clara6detail5TokenEJRKS3_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt10_ConstructIN5Catch5clara8TextFlow6ColumnEJRKS3_EEvPT_DpOT0_ called 0 returned 0% blocks executed 0%
+    #####:   74:    _Construct(_T1* __p, _Args&&... __args)
+    #####:   75:    { ::new(static_cast<void*>(__p)) _T1(std::forward<_Args>(__args)...); }
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+call    9 never executed
+call   10 never executed
+call   11 never executed
+branch 12 never executed
+branch 13 never executed
+call   14 never executed
+call   15 never executed
+branch 16 never executed
+branch 17 never executed
+call   18 never executed
+branch 19 never executed
+branch 20 never executed
+call   21 never executed
+call   22 never executed
+call   23 never executed
+branch 24 never executed
+branch 25 never executed
+call   26 never executed
+call   27 never executed
+branch 28 never executed
+branch 29 never executed
+call   30 never executed
+call   31 never executed
+branch 32 never executed
+branch 33 never executed
+call   34 never executed
+call   35 never executed
+branch 36 never executed
+branch 37 never executed
+call   38 never executed
+call   39 never executed
+call   40 never executed
+branch 41 never executed
+branch 42 never executed
+call   43 never executed
+branch 44 never executed
+branch 45 never executed
+call   46 never executed
+call   47 never executed
+call   48 never executed
+branch 49 never executed
+branch 50 never executed
+call   51 never executed
+call   52 never executed
+branch 53 never executed
+branch 54 never executed
+call   55 never executed
+call   56 never executed
+branch 57 never executed
+branch 58 never executed
+call   59 never executed
+branch 60 never executed
+branch 61 never executed
+call   62 never executed
+call   63 never executed
+branch 64 never executed
+branch 65 never executed
+call   66 never executed
+branch 67 never executed
+branch 68 never executed
+call   69 never executed
+call   70 never executed
+call   71 never executed
+branch 72 never executed
+branch 73 never executed
+call   74 never executed
+call   75 never executed
+call   76 never executed
+branch 77 never executed
+branch 78 never executed
+call   79 never executed
+call   80 never executed
+call   81 never executed
+branch 82 never executed
+branch 83 never executed
+call   84 never executed
+call   85 never executed
+call   86 never executed
+branch 87 never executed
+branch 88 never executed
+call   89 never executed
+call   90 never executed
+call   91 never executed
+branch 92 never executed
+branch 93 never executed
+call   94 never executed
+branch 95 never executed
+branch 96 never executed
+call   97 never executed
+call   98 never executed
+call   99 never executed
+branch 100 never executed
+branch 101 never executed
+call   102 never executed
+call   103 never executed
+call   104 never executed
+branch 105 never executed
+branch 106 never executed
+call   107 never executed
+call   108 never executed
+call   109 never executed
+branch 110 never executed
+branch 111 never executed
+call   112 never executed
+call   113 never executed
+call   114 never executed
+branch 115 never executed
+branch 116 never executed
+call   117 never executed
+call   118 never executed
+call   119 never executed
+branch 120 never executed
+branch 121 never executed
+call   122 never executed
+call   123 never executed
+call   124 never executed
+branch 125 never executed
+branch 126 never executed
+call   127 never executed
+call   128 never executed
+call   129 never executed
+branch 130 never executed
+branch 131 never executed
+call   132 never executed
+call   133 never executed
+call   134 never executed
+branch 135 never executed
+branch 136 never executed
+call   137 never executed
+call   138 never executed
+call   139 never executed
+branch 140 never executed
+branch 141 never executed
+call   142 never executed
+call   143 never executed
+call   144 never executed
+branch 145 never executed
+branch 146 never executed
+call   147 never executed
+call   148 never executed
+call   149 never executed
+branch 150 never executed
+branch 151 never executed
+call   152 never executed
+call   153 never executed
+call   154 never executed
+branch 155 never executed
+branch 156 never executed
+call   157 never executed
+call   158 never executed
+call   159 never executed
+branch 160 never executed
+branch 161 never executed
+call   162 never executed
+branch 163 never executed
+branch 164 never executed
+call   165 never executed
+call   166 never executed
+call   167 never executed
+branch 168 never executed
+branch 169 never executed
+call   170 never executed
+call   171 never executed
+call   172 never executed
+branch 173 never executed
+branch 174 never executed
+call   175 never executed
+call   176 never executed
+call   177 never executed
+branch 178 never executed
+branch 179 never executed
+call   180 never executed
+call   181 never executed
+call   182 never executed
+branch 183 never executed
+branch 184 never executed
+call   185 never executed
+branch 186 never executed
+branch 187 never executed
+call   188 never executed
+call   189 never executed
+call   190 never executed
+branch 191 never executed
+branch 192 never executed
+call   193 never executed
+call   194 never executed
+call   195 never executed
+branch 196 never executed
+branch 197 never executed
+call   198 never executed
+call   199 never executed
+call   200 never executed
+branch 201 never executed
+branch 202 never executed
+call   203 never executed
+call   204 never executed
+call   205 never executed
+call   206 never executed
+branch 207 never executed
+branch 208 never executed
+call   209 never executed
+branch 210 never executed
+branch 211 never executed
+call   212 never executed
+call   213 never executed
+call   214 never executed
+call   215 never executed
+call   216 never executed
+branch 217 never executed
+branch 218 never executed
+call   219 never executed
+call   220 never executed
+call   221 never executed
+branch 222 never executed
+branch 223 never executed
+call   224 never executed
+branch 225 never executed
+branch 226 never executed
+call   227 never executed
+call   228 never executed
+branch 229 never executed
+branch 230 never executed
+call   231 never executed
+call   232 never executed
+call   233 never executed
+branch 234 never executed
+branch 235 never executed
+call   236 never executed
+call   237 never executed
+call   238 never executed
+branch 239 never executed
+branch 240 never executed
+call   241 never executed
+call   242 never executed
+call   243 never executed
+branch 244 never executed
+branch 245 never executed
+call   246 never executed
+call   247 never executed
+call   248 never executed
+branch 249 never executed
+branch 250 never executed
+call   251 never executed
+branch 252 never executed
+branch 253 never executed
+call   254 never executed
+call   255 never executed
+call   256 never executed
+branch 257 never executed
+branch 258 never executed
+call   259 never executed
+branch 260 never executed
+branch 261 never executed
+call   262 never executed
+call   263 never executed
+call   264 never executed
+branch 265 never executed
+branch 266 never executed
+call   267 never executed
+branch 268 never executed
+branch 269 never executed
+call   270 never executed
+call   271 never executed
+branch 272 never executed
+branch 273 never executed
+call   274 never executed
+call   275 never executed
+call   276 never executed
+branch 277 never executed
+branch 278 never executed
+call   279 never executed
+call   280 never executed
+branch 281 never executed
+branch 282 never executed
+call   283 never executed
+branch 284 never executed
+branch 285 never executed
+call   286 never executed
+call   287 never executed
+call   288 never executed
+branch 289 never executed
+branch 290 never executed
+call   291 never executed
+branch 292 never executed
+branch 293 never executed
+call   294 never executed
+call   295 never executed
+call   296 never executed
+branch 297 never executed
+branch 298 never executed
+call   299 never executed
+branch 300 never executed
+branch 301 never executed
+call   302 never executed
+call   303 never executed
+call   304 never executed
+branch 305 never executed
+branch 306 never executed
+call   307 never executed
+branch 308 never executed
+branch 309 never executed
+call   310 never executed
+call   311 never executed
+call   312 never executed
+branch 313 never executed
+branch 314 never executed
+call   315 never executed
+branch 316 never executed
+branch 317 never executed
+call   318 never executed
+call   319 never executed
+call   320 never executed
+branch 321 never executed
+branch 322 never executed
+call   323 never executed
+branch 324 never executed
+branch 325 never executed
+call   326 never executed
+call   327 never executed
+call   328 never executed
+branch 329 never executed
+branch 330 never executed
+call   331 never executed
+branch 332 never executed
+branch 333 never executed
+call   334 never executed
+call   335 never executed
+call   336 never executed
+branch 337 never executed
+branch 338 never executed
+call   339 never executed
+branch 340 never executed
+branch 341 never executed
+call   342 never executed
+call   343 never executed
+call   344 never executed
+branch 345 never executed
+branch 346 never executed
+call   347 never executed
+branch 348 never executed
+branch 349 never executed
+call   350 never executed
+        -:   76:#else
+        -:   77:  template<typename _T1, typename _T2>
+        -:   78:    inline void
+        -:   79:    _Construct(_T1* __p, const _T2& __value)
+        -:   80:    {
+        -:   81:      // _GLIBCXX_RESOLVE_LIB_DEFECTS
+        -:   82:      // 402. wrong new expression in [some_]allocator::construct
+        -:   83:      ::new(static_cast<void*>(__p)) _T1(__value);
+        -:   84:    }
+        -:   85:#endif
+        -:   86:
+        -:   87:  template<typename _T1>
+        -:   88:    inline void
+        -:   89:    _Construct_novalue(_T1* __p)
+        -:   90:    { ::new(static_cast<void*>(__p)) _T1; }
+        -:   91:
+        -:   92:  /**
+        -:   93:   * Destroy the object pointed to by a pointer type.
+        -:   94:   */
+        -:   95:  template<typename _Tp>
+        -:   96:    inline void
+function _ZSt8_DestroyISt4pairINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_EEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyINSt8__detail6_StateIcEEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyISt4pairIlSt6vectorINSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS2_12basic_stringIcSt11char_traitsIcESaIcEEEEEEESaISE_EEEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyISt10unique_ptrINSt7__cxx1119basic_ostringstreamIcSt11char_traitsIcESaIcEEESt14default_deleteIS6_EEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyISt10unique_ptrIN5Catch6Detail8EnumInfoESt14default_deleteIS3_EEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyINSt15__exception_ptr13exception_ptrEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyISt10unique_ptrIN5Catch18IStreamingReporterESt14default_deleteIS2_EEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyISt10shared_ptrIN5Catch22CumulativeReporterBaseINS1_13JunitReporterEE11SectionNodeEEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyISt10shared_ptrIN5Catch22CumulativeReporterBaseINS1_13JunitReporterEE4NodeINS1_12TestRunStatsENS5_INS1_14TestGroupStatsENS5_INS1_13TestCaseStatsENS4_11SectionNodeEEEEEEEEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyISt10shared_ptrIN5Catch22CumulativeReporterBaseINS1_13JunitReporterEE4NodeINS1_14TestGroupStatsENS5_INS1_13TestCaseStatsENS4_11SectionNodeEEEEEEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyISt10shared_ptrIN5Catch22CumulativeReporterBaseINS1_13JunitReporterEE4NodeINS1_13TestCaseStatsENS4_11SectionNodeEEEEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyISt6vectorISt10shared_ptrIN5Catch22CumulativeReporterBaseINS2_13JunitReporterEE11SectionNodeEESaIS7_EEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN5Catch14AssertionStatsEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN5Catch13SummaryColumnEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN5Catch12_GLOBAL__N_110ColumnInfoEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN5Catch11SectionInfoEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN5Catch8TestSpec11FilterMatchEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN5Catch14SectionEndInfoEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN5Catch13ScopedMessageEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyISt10shared_ptrIN5Catch16TestCaseTracking8ITrackerEEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyISt10shared_ptrIN5Catch16IReporterFactoryEEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN5Catch8TestCaseEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN5Catch11MessageInfoEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyISt10unique_ptrIKN5Catch20IExceptionTranslatorESt14default_deleteIS3_EEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyISt4pairIiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN5Catch9StringRefEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyISt10shared_ptrIN5Catch8TestSpec7PatternEEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN5Catch8TestSpec6FilterEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN5Catch5clara6detail3ArgEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN5Catch5clara6detail3OptEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN5Catch5clara6detail11HelpColumnsEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN5Catch5clara6detail5TokenEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN5Catch5clara8TextFlow6ColumnEEvPT_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEvPT_ called 0 returned 0% blocks executed 0%
+    #####:   97:    _Destroy(_Tp* __pointer)
+    #####:   98:    { __pointer->~_Tp(); }
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+call   11 never executed
+call   12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+call   19 never executed
+call   20 never executed
+call   21 never executed
+call   22 never executed
+call   23 never executed
+call   24 never executed
+call   25 never executed
+call   26 never executed
+call   27 never executed
+call   28 never executed
+call   29 never executed
+call   30 never executed
+call   31 never executed
+call   32 never executed
+call   33 never executed
+        -:   99:
+        -:  100:  template<bool>
+        -:  101:    struct _Destroy_aux
+        -:  102:    {
+        -:  103:      template<typename _ForwardIterator>
+        -:  104:        static void
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPSt4pairINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_EEEvT_SB_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPNSt8__detail6_StateIcEEEEvT_S6_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPSt4pairIlSt6vectorINSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS4_12basic_stringIcSt11char_traitsIcESaIcEEEEEEESaISG_EEEEEvT_SL_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPSt10unique_ptrINSt7__cxx1119basic_ostringstreamIcSt11char_traitsIcESaIcEEESt14default_deleteIS8_EEEEvT_SD_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPSt10unique_ptrIN5Catch6Detail8EnumInfoESt14default_deleteIS5_EEEEvT_SA_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPNSt15__exception_ptr13exception_ptrEEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPSt10unique_ptrIN5Catch18IStreamingReporterESt14default_deleteIS4_EEEEvT_S9_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPSt10shared_ptrIN5Catch22CumulativeReporterBaseINS3_13JunitReporterEE11SectionNodeEEEEvT_SA_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPSt10shared_ptrIN5Catch22CumulativeReporterBaseINS3_13JunitReporterEE4NodeINS3_12TestRunStatsENS7_INS3_14TestGroupStatsENS7_INS3_13TestCaseStatsENS6_11SectionNodeEEEEEEEEEEvT_SH_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPSt10shared_ptrIN5Catch22CumulativeReporterBaseINS3_13JunitReporterEE4NodeINS3_14TestGroupStatsENS7_INS3_13TestCaseStatsENS6_11SectionNodeEEEEEEEEvT_SF_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPSt10shared_ptrIN5Catch22CumulativeReporterBaseINS3_13JunitReporterEE4NodeINS3_13TestCaseStatsENS6_11SectionNodeEEEEEEvT_SD_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPSt6vectorISt10shared_ptrIN5Catch22CumulativeReporterBaseINS4_13JunitReporterEE11SectionNodeEESaIS9_EEEEvT_SD_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPN5Catch14AssertionStatsEEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPN5Catch13SummaryColumnEEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPN5Catch12_GLOBAL__N_110ColumnInfoEEEvT_S6_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPN5Catch11SectionInfoEEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIN9__gnu_cxx17__normal_iteratorIPN5Catch5clara6detail3ArgESt6vectorIS7_SaIS7_EEEEEEvT_SD_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIN9__gnu_cxx17__normal_iteratorIPN5Catch5clara6detail3OptESt6vectorIS7_SaIS7_EEEEEEvT_SD_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIN9__gnu_cxx17__normal_iteratorIPNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt6vectorIS9_SaIS9_EEEEEEvT_SF_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPN5Catch8TestSpec11FilterMatchEEEvT_S6_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPN5Catch14SectionEndInfoEEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPN5Catch13ScopedMessageEEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPSt10shared_ptrIN5Catch16TestCaseTracking8ITrackerEEEEvT_S8_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPSt10shared_ptrIN5Catch16IReporterFactoryEEEEvT_S7_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPN5Catch8TestCaseEEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPN5Catch11MessageInfoEEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPSt10unique_ptrIKN5Catch20IExceptionTranslatorESt14default_deleteIS5_EEEEvT_SA_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPSt4pairIiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEEvT_SB_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPN5Catch9StringRefEEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPSt10shared_ptrIN5Catch8TestSpec7PatternEEEEvT_S8_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPN5Catch8TestSpec6FilterEEEvT_S6_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPN5Catch5clara6detail3ArgEEEvT_S7_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPN5Catch5clara6detail3OptEEEvT_S7_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPN5Catch5clara6detail11HelpColumnsEEEvT_S7_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPN5Catch5clara6detail5TokenEEEvT_S7_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPN5Catch5clara8TextFlow6ColumnEEEvT_S7_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb0EE9__destroyIPNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvT_S9_ called 0 returned 0% blocks executed 0%
+    #####:  105:        __destroy(_ForwardIterator __first, _ForwardIterator __last)
+        -:  106:	{
+    #####:  107:	  for (; __first != __last; ++__first)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+branch  6 never executed
+branch  7 never executed
+branch  8 never executed
+branch  9 never executed
+branch 10 never executed
+branch 11 never executed
+branch 12 never executed
+branch 13 never executed
+branch 14 never executed
+branch 15 never executed
+branch 16 never executed
+branch 17 never executed
+branch 18 never executed
+branch 19 never executed
+branch 20 never executed
+branch 21 never executed
+branch 22 never executed
+branch 23 never executed
+branch 24 never executed
+branch 25 never executed
+branch 26 never executed
+branch 27 never executed
+branch 28 never executed
+branch 29 never executed
+branch 30 never executed
+branch 31 never executed
+call   32 never executed
+branch 33 never executed
+branch 34 never executed
+call   35 never executed
+call   36 never executed
+branch 37 never executed
+branch 38 never executed
+call   39 never executed
+call   40 never executed
+branch 41 never executed
+branch 42 never executed
+call   43 never executed
+branch 44 never executed
+branch 45 never executed
+branch 46 never executed
+branch 47 never executed
+branch 48 never executed
+branch 49 never executed
+branch 50 never executed
+branch 51 never executed
+branch 52 never executed
+branch 53 never executed
+branch 54 never executed
+branch 55 never executed
+branch 56 never executed
+branch 57 never executed
+branch 58 never executed
+branch 59 never executed
+branch 60 never executed
+branch 61 never executed
+branch 62 never executed
+branch 63 never executed
+branch 64 never executed
+branch 65 never executed
+branch 66 never executed
+branch 67 never executed
+branch 68 never executed
+branch 69 never executed
+branch 70 never executed
+branch 71 never executed
+branch 72 never executed
+branch 73 never executed
+branch 74 never executed
+branch 75 never executed
+branch 76 never executed
+branch 77 never executed
+branch 78 never executed
+branch 79 never executed
+    #####:  108:	    std::_Destroy(std::__addressof(*__first));
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+call   11 never executed
+call   12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+call   19 never executed
+call   20 never executed
+call   21 never executed
+call   22 never executed
+call   23 never executed
+call   24 never executed
+call   25 never executed
+call   26 never executed
+call   27 never executed
+call   28 never executed
+call   29 never executed
+call   30 never executed
+call   31 never executed
+call   32 never executed
+call   33 never executed
+call   34 never executed
+call   35 never executed
+call   36 never executed
+call   37 never executed
+call   38 never executed
+call   39 never executed
+call   40 never executed
+call   41 never executed
+call   42 never executed
+call   43 never executed
+call   44 never executed
+call   45 never executed
+call   46 never executed
+call   47 never executed
+call   48 never executed
+call   49 never executed
+call   50 never executed
+call   51 never executed
+call   52 never executed
+call   53 never executed
+call   54 never executed
+call   55 never executed
+call   56 never executed
+call   57 never executed
+call   58 never executed
+call   59 never executed
+call   60 never executed
+call   61 never executed
+call   62 never executed
+call   63 never executed
+call   64 never executed
+call   65 never executed
+call   66 never executed
+call   67 never executed
+call   68 never executed
+call   69 never executed
+call   70 never executed
+call   71 never executed
+call   72 never executed
+call   73 never executed
+call   74 never executed
+call   75 never executed
+call   76 never executed
+    #####:  109:	}
+        -:  110:    };
+        -:  111:
+        -:  112:  template<>
+        -:  113:    struct _Destroy_aux<true>
+        -:  114:    {
+        -:  115:      template<typename _ForwardIterator>
+        -:  116:        static void
+function _ZNSt12_Destroy_auxILb1EE9__destroyIPNSt7__cxx1112regex_traitsIcE10_RegexMaskEEEvT_S7_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb1EE9__destroyIPSt4pairIccEEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb1EE9__destroyIN9__gnu_cxx17__normal_iteratorIPNSt7__cxx119sub_matchINS3_IPKcNS4_12basic_stringIcSt11char_traitsIcESaIcEEEEEEESt6vectorISE_SaISE_EEEEEEvT_SK_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb1EE9__destroyIPSt4pairIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEiEEEvT_SG_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb1EE9__destroyIPNSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS2_12basic_stringIcSt11char_traitsIcESaIcEEEEEEEEEvT_SG_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb1EE9__destroyIPcEEvT_S3_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb1EE9__destroyIPPKN5Catch8TestCaseEEEvT_S7_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb1EE9__destroyIPPN5Catch10ISingletonEEEvT_S6_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb1EE9__destroyIPPN5Catch16TestCaseTracking8ITrackerEEEvT_S7_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb1EE9__destroyIPmEEvT_S3_ called 0 returned 0% blocks executed 0%
+function _ZNSt12_Destroy_auxILb1EE9__destroyIPN5Catch5clara8TextFlow6Column8iteratorEEEvT_S8_ called 0 returned 0% blocks executed 0%
+    #####:  117:        __destroy(_ForwardIterator, _ForwardIterator) { }
+        -:  118:    };
+        -:  119:
+        -:  120:  /**
+        -:  121:   * Destroy a range of objects.  If the value_type of the object has
+        -:  122:   * a trivial destructor, the compiler should optimize all of this
+        -:  123:   * away, otherwise the objects' destructors must be invoked.
+        -:  124:   */
+        -:  125:  template<typename _ForwardIterator>
+        -:  126:    inline void
+function _ZSt8_DestroyIPSt4pairINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_EEvT_S9_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPNSt7__cxx1112regex_traitsIcE10_RegexMaskEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt4pairIccEEvT_S3_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPNSt8__detail6_StateIcEEEvT_S4_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN9__gnu_cxx17__normal_iteratorIPNSt7__cxx119sub_matchINS1_IPKcNS2_12basic_stringIcSt11char_traitsIcESaIcEEEEEEESt6vectorISC_SaISC_EEEEEvT_SI_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt4pairIlSt6vectorINSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS2_12basic_stringIcSt11char_traitsIcESaIcEEEEEEESaISE_EEEEvT_SJ_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt4pairIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEiEEvT_SE_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPNSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS0_12basic_stringIcSt11char_traitsIcESaIcEEEEEEEEvT_SE_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10unique_ptrINSt7__cxx1119basic_ostringstreamIcSt11char_traitsIcESaIcEEESt14default_deleteIS6_EEEvT_SB_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPcEvT_S1_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10unique_ptrIN5Catch6Detail8EnumInfoESt14default_deleteIS3_EEEvT_S8_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPNSt15__exception_ptr13exception_ptrEEvT_S3_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10unique_ptrIN5Catch18IStreamingReporterESt14default_deleteIS2_EEEvT_S7_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10shared_ptrIN5Catch22CumulativeReporterBaseINS1_13JunitReporterEE11SectionNodeEEEvT_S8_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10shared_ptrIN5Catch22CumulativeReporterBaseINS1_13JunitReporterEE4NodeINS1_12TestRunStatsENS5_INS1_14TestGroupStatsENS5_INS1_13TestCaseStatsENS4_11SectionNodeEEEEEEEEEvT_SF_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10shared_ptrIN5Catch22CumulativeReporterBaseINS1_13JunitReporterEE4NodeINS1_14TestGroupStatsENS5_INS1_13TestCaseStatsENS4_11SectionNodeEEEEEEEvT_SD_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10shared_ptrIN5Catch22CumulativeReporterBaseINS1_13JunitReporterEE4NodeINS1_13TestCaseStatsENS4_11SectionNodeEEEEEvT_SB_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt6vectorISt10shared_ptrIN5Catch22CumulativeReporterBaseINS2_13JunitReporterEE11SectionNodeEESaIS7_EEEvT_SB_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch14AssertionStatsEEvT_S3_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch13SummaryColumnEEvT_S3_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch12_GLOBAL__N_110ColumnInfoEEvT_S4_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch11SectionInfoEEvT_S3_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPPKN5Catch8TestCaseEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPPN5Catch10ISingletonEEvT_S4_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN9__gnu_cxx17__normal_iteratorIPN5Catch5clara6detail3ArgESt6vectorIS5_SaIS5_EEEEEvT_SB_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN9__gnu_cxx17__normal_iteratorIPN5Catch5clara6detail3OptESt6vectorIS5_SaIS5_EEEEEvT_SB_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN9__gnu_cxx17__normal_iteratorIPNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt6vectorIS7_SaIS7_EEEEEvT_SD_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch8TestSpec11FilterMatchEEvT_S4_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPPN5Catch16TestCaseTracking8ITrackerEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch14SectionEndInfoEEvT_S3_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch13ScopedMessageEEvT_S3_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10shared_ptrIN5Catch16TestCaseTracking8ITrackerEEEvT_S6_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10shared_ptrIN5Catch16IReporterFactoryEEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch8TestCaseEEvT_S3_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch11MessageInfoEEvT_S3_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10unique_ptrIKN5Catch20IExceptionTranslatorESt14default_deleteIS3_EEEvT_S8_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt4pairIiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvT_S9_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch9StringRefEEvT_S3_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10shared_ptrIN5Catch8TestSpec7PatternEEEvT_S6_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPmEvT_S1_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch8TestSpec6FilterEEvT_S4_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch5clara6detail3ArgEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch5clara6detail3OptEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch5clara6detail11HelpColumnsEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch5clara6detail5TokenEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch5clara8TextFlow6ColumnEEvT_S5_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch5clara8TextFlow6Column8iteratorEEvT_S6_ called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEvT_S7_ called 0 returned 0% blocks executed 0%
+    #####:  127:    _Destroy(_ForwardIterator __first, _ForwardIterator __last)
+        -:  128:    {
+        -:  129:      typedef typename iterator_traits<_ForwardIterator>::value_type
+        -:  130:                       _Value_type;
+        -:  131:#if __cplusplus >= 201103L
+        -:  132:      // A deleted destructor is trivial, this ensures we reject such types:
+        -:  133:      static_assert(is_destructible<_Value_type>::value,
+        -:  134:		    "value type is destructible");
+        -:  135:#endif
+        -:  136:      std::_Destroy_aux<__has_trivial_destructor(_Value_type)>::
+    #####:  137:	__destroy(__first, __last);
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+call   11 never executed
+call   12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+call   19 never executed
+call   20 never executed
+call   21 never executed
+call   22 never executed
+call   23 never executed
+call   24 never executed
+call   25 never executed
+call   26 never executed
+call   27 never executed
+call   28 never executed
+call   29 never executed
+call   30 never executed
+call   31 never executed
+call   32 never executed
+call   33 never executed
+call   34 never executed
+call   35 never executed
+call   36 never executed
+call   37 never executed
+call   38 never executed
+call   39 never executed
+call   40 never executed
+call   41 never executed
+call   42 never executed
+call   43 never executed
+call   44 never executed
+call   45 never executed
+call   46 never executed
+call   47 never executed
+    #####:  138:    }
+        -:  139:
+        -:  140:  template<bool>
+        -:  141:    struct _Destroy_n_aux
+        -:  142:    {
+        -:  143:      template<typename _ForwardIterator, typename _Size>
+        -:  144:        static _ForwardIterator
+        -:  145:        __destroy_n(_ForwardIterator __first, _Size __count)
+        -:  146:	{
+        -:  147:	  for (; __count > 0; (void)++__first, --__count)
+        -:  148:	    std::_Destroy(std::__addressof(*__first));
+        -:  149:	  return __first;
+        -:  150:	}
+        -:  151:    };
+        -:  152:
+        -:  153:  template<>
+        -:  154:    struct _Destroy_n_aux<true>
+        -:  155:    {
+        -:  156:      template<typename _ForwardIterator, typename _Size>
+        -:  157:        static _ForwardIterator
+        -:  158:        __destroy_n(_ForwardIterator __first, _Size __count)
+        -:  159:	{
+        -:  160:	  std::advance(__first, __count);
+        -:  161:	  return __first;
+        -:  162:	}
+        -:  163:    };
+        -:  164:
+        -:  165:  /**
+        -:  166:   * Destroy a range of objects.  If the value_type of the object has
+        -:  167:   * a trivial destructor, the compiler should optimize all of this
+        -:  168:   * away, otherwise the objects' destructors must be invoked.
+        -:  169:   */
+        -:  170:  template<typename _ForwardIterator, typename _Size>
+        -:  171:    inline _ForwardIterator
+        -:  172:    _Destroy_n(_ForwardIterator __first, _Size __count)
+        -:  173:    {
+        -:  174:      typedef typename iterator_traits<_ForwardIterator>::value_type
+        -:  175:                       _Value_type;
+        -:  176:#if __cplusplus >= 201103L
+        -:  177:      // A deleted destructor is trivial, this ensures we reject such types:
+        -:  178:      static_assert(is_destructible<_Value_type>::value,
+        -:  179:		    "value type is destructible");
+        -:  180:#endif
+        -:  181:      return std::_Destroy_n_aux<__has_trivial_destructor(_Value_type)>::
+        -:  182:	__destroy_n(__first, __count);
+        -:  183:    }
+        -:  184:
+        -:  185:  /**
+        -:  186:   * Destroy a range of objects using the supplied allocator.  For
+        -:  187:   * nondefault allocators we do not optimize away invocation of 
+        -:  188:   * destroy() even if _Tp has a trivial destructor.
+        -:  189:   */
+        -:  190:
+        -:  191:  template<typename _ForwardIterator, typename _Allocator>
+        -:  192:    void
+        -:  193:    _Destroy(_ForwardIterator __first, _ForwardIterator __last,
+        -:  194:	     _Allocator& __alloc)
+        -:  195:    {
+        -:  196:      typedef __gnu_cxx::__alloc_traits<_Allocator> __traits;
+        -:  197:      for (; __first != __last; ++__first)
+        -:  198:	__traits::destroy(__alloc, std::__addressof(*__first));
+        -:  199:    }
+        -:  200:
+        -:  201:  template<typename _ForwardIterator, typename _Tp>
+        -:  202:    inline void
+function _ZSt8_DestroyIPSt4pairINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_ES7_EvT_S9_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPNSt7__cxx1112regex_traitsIcE10_RegexMaskES3_EvT_S5_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt4pairIccES1_EvT_S3_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPNSt8__detail6_StateIcEES2_EvT_S4_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN9__gnu_cxx17__normal_iteratorIPNSt7__cxx119sub_matchINS1_IPKcNS2_12basic_stringIcSt11char_traitsIcESaIcEEEEEEESt6vectorISC_SaISC_EEEESC_EvT_SI_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt4pairIlSt6vectorINSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS2_12basic_stringIcSt11char_traitsIcESaIcEEEEEEESaISE_EEESH_EvT_SJ_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt4pairIN9__gnu_cxx17__normal_iteratorIPKcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEiESC_EvT_SE_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPNSt7__cxx119sub_matchIN9__gnu_cxx17__normal_iteratorIPKcNS0_12basic_stringIcSt11char_traitsIcESaIcEEEEEEESC_EvT_SE_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10unique_ptrINSt7__cxx1119basic_ostringstreamIcSt11char_traitsIcESaIcEEESt14default_deleteIS6_EES9_EvT_SB_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPccEvT_S1_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10unique_ptrIN5Catch6Detail8EnumInfoESt14default_deleteIS3_EES6_EvT_S8_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPNSt15__exception_ptr13exception_ptrES1_EvT_S3_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10unique_ptrIN5Catch18IStreamingReporterESt14default_deleteIS2_EES5_EvT_S7_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10shared_ptrIN5Catch22CumulativeReporterBaseINS1_13JunitReporterEE11SectionNodeEES6_EvT_S8_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10shared_ptrIN5Catch22CumulativeReporterBaseINS1_13JunitReporterEE4NodeINS1_12TestRunStatsENS5_INS1_14TestGroupStatsENS5_INS1_13TestCaseStatsENS4_11SectionNodeEEEEEEEESD_EvT_SF_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10shared_ptrIN5Catch22CumulativeReporterBaseINS1_13JunitReporterEE4NodeINS1_14TestGroupStatsENS5_INS1_13TestCaseStatsENS4_11SectionNodeEEEEEESB_EvT_SD_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10shared_ptrIN5Catch22CumulativeReporterBaseINS1_13JunitReporterEE4NodeINS1_13TestCaseStatsENS4_11SectionNodeEEEES9_EvT_SB_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt6vectorISt10shared_ptrIN5Catch22CumulativeReporterBaseINS2_13JunitReporterEE11SectionNodeEESaIS7_EES9_EvT_SB_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch14AssertionStatsES1_EvT_S3_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch13SummaryColumnES1_EvT_S3_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch12_GLOBAL__N_110ColumnInfoES2_EvT_S4_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch11SectionInfoES1_EvT_S3_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPPKN5Catch8TestCaseES3_EvT_S5_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPPN5Catch10ISingletonES2_EvT_S4_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN9__gnu_cxx17__normal_iteratorIPN5Catch5clara6detail3ArgESt6vectorIS5_SaIS5_EEEES5_EvT_SB_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN9__gnu_cxx17__normal_iteratorIPN5Catch5clara6detail3OptESt6vectorIS5_SaIS5_EEEES5_EvT_SB_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIN9__gnu_cxx17__normal_iteratorIPNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt6vectorIS7_SaIS7_EEEES7_EvT_SD_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch8TestSpec11FilterMatchES2_EvT_S4_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPPN5Catch16TestCaseTracking8ITrackerES3_EvT_S5_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch14SectionEndInfoES1_EvT_S3_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch13ScopedMessageES1_EvT_S3_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10shared_ptrIN5Catch16TestCaseTracking8ITrackerEES4_EvT_S6_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10shared_ptrIN5Catch16IReporterFactoryEES3_EvT_S5_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch8TestCaseES1_EvT_S3_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch11MessageInfoES1_EvT_S3_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10unique_ptrIKN5Catch20IExceptionTranslatorESt14default_deleteIS3_EES6_EvT_S8_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt4pairIiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEES7_EvT_S9_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch9StringRefES1_EvT_S3_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPSt10shared_ptrIN5Catch8TestSpec7PatternEES4_EvT_S6_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPmmEvT_S1_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch8TestSpec6FilterES2_EvT_S4_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch5clara6detail3ArgES3_EvT_S5_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch5clara6detail3OptES3_EvT_S5_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch5clara6detail11HelpColumnsES3_EvT_S5_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch5clara6detail5TokenES3_EvT_S5_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch5clara8TextFlow6ColumnES3_EvT_S5_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPN5Catch5clara8TextFlow6Column8iteratorES4_EvT_S6_RSaIT0_E called 0 returned 0% blocks executed 0%
+function _ZSt8_DestroyIPNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_EvT_S7_RSaIT0_E called 0 returned 0% blocks executed 0%
+    #####:  203:    _Destroy(_ForwardIterator __first, _ForwardIterator __last,
+        -:  204:	     allocator<_Tp>&)
+        -:  205:    {
+    #####:  206:      _Destroy(__first, __last);
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+call   11 never executed
+call   12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+call   19 never executed
+call   20 never executed
+call   21 never executed
+call   22 never executed
+call   23 never executed
+call   24 never executed
+call   25 never executed
+call   26 never executed
+call   27 never executed
+call   28 never executed
+call   29 never executed
+call   30 never executed
+call   31 never executed
+call   32 never executed
+call   33 never executed
+call   34 never executed
+call   35 never executed
+call   36 never executed
+call   37 never executed
+call   38 never executed
+call   39 never executed
+call   40 never executed
+call   41 never executed
+call   42 never executed
+call   43 never executed
+call   44 never executed
+call   45 never executed
+call   46 never executed
+call   47 never executed
+    #####:  207:    }
+        -:  208:
+        -:  209:#if __cplusplus > 201402L
+        -:  210:  template <typename _Tp>
+        -:  211:    inline void
+        -:  212:    destroy_at(_Tp* __location)
+        -:  213:    {
+        -:  214:      std::_Destroy(__location);
+        -:  215:    }
+        -:  216:
+        -:  217:  template <typename _ForwardIterator>
+        -:  218:    inline void
+        -:  219:    destroy(_ForwardIterator __first, _ForwardIterator __last)
+        -:  220:    {
+        -:  221:      std::_Destroy(__first, __last);
+        -:  222:    }
+        -:  223:
+        -:  224:  template <typename _ForwardIterator, typename _Size>
+        -:  225:    inline _ForwardIterator
+        -:  226:    destroy_n(_ForwardIterator __first, _Size __count)
+        -:  227:    {
+        -:  228:      return std::_Destroy_n(__first, __count);
+        -:  229:    }
+        -:  230:#endif
+        -:  231:
+        -:  232:_GLIBCXX_END_NAMESPACE_VERSION
+        -:  233:} // namespace std
+        -:  234:
+        -:  235:#endif /* _STL_CONSTRUCT_H */
+        -:  236:

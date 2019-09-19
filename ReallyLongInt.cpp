@@ -7,7 +7,14 @@ ReallyLongInt::ReallyLongInt(){
 }
 
 ReallyLongInt::ReallyLongInt(long long num){
-    isNeg = (num < 0)? true : false;
+    
+    if(num < 0){
+        isNeg = true;
+    }
+    else{
+        isNeg = false;
+    }
+
     size = log2(num)+1;
     *digits = vector<bool>(size, isNeg); //deleted new, added *
 
@@ -15,7 +22,14 @@ ReallyLongInt::ReallyLongInt(long long num){
     long long index = 0;
 
     while(i > 0){
-        (*digits)[index] = (i%2 == 1)? true : false;
+
+        if(i%2 == 1){
+            (*digits)[index] = true;
+        }
+        else{
+            (*digits)[index] =false;
+        }
+
         i = i/2;   
         ++index;  
     }
@@ -25,7 +39,14 @@ ReallyLongInt::ReallyLongInt(long long num){
 
 ReallyLongInt::ReallyLongInt(const string& numStr){
     long long num = stoll(numStr, nullptr, 10);
-    isNeg = (num < 0)? true : false;
+    
+    if(num < 0){
+        isNeg = true;
+    }
+    else{
+        isNeg = false;
+    }
+
     size = log2(num)+1;
     *digits = vector<bool>(size, isNeg);
 
@@ -33,7 +54,14 @@ ReallyLongInt::ReallyLongInt(const string& numStr){
     long long index = 0;
 
     while(i > 0){
-        (*digits)[index] = (i%2 == 1)? true : false;
+        
+        if(i%2 == 1){
+            (*digits)[index] = true;
+        }
+        else{
+            (*digits)[index] =false;
+        }
+
         i = i/2;   
         ++index;  
     }
@@ -52,7 +80,7 @@ ReallyLongInt::ReallyLongInt(const ReallyLongInt& other){
 }
 
 ReallyLongInt::~ReallyLongInt(){
-    cout << "Invoking destructor, clearing up" << endl;
+    //cout << "Invoking destructor, clearing up" << endl;
 
     delete [] digits;
 }
@@ -63,12 +91,23 @@ string ReallyLongInt::toString() const{
     long long sum = 0;
 
     for(long long i=0; i < size; ++i){
-        sum += ((*digits)[i])? pow(2, size - (i + 1)) : 0 ;
+
+        if((*digits)[i] == true){
+            sum += pow(2, (size-(i+1)));
+        }
+
     }
 
-    cout<<"toString: "<<to_string(sum) << endl;
+    //cout<<"toString: "<<to_string(sum) << endl;
+    string result = to_string(sum);
+
+    if(isNeg){
+        result = "-" + result;
+    }
+
+    cout << "String: " << result << endl;
     
-    return to_string(sum);
+    return result;
 }
 
 //Returns a string representation of the number stored in base 2
@@ -77,10 +116,20 @@ string ReallyLongInt::toStringBinary() const{
     string binaryString = "";
 
     for(long long i=0; i < size; ++i){
-        binaryString += ((*digits)[i])? "1" : "0";
+
+        if((*digits)[i] == true){
+            binaryString += "1";
+        }
+        else{
+            binaryString += "0";
+        }
     }
 
-    cout << "Binary: " << binaryString << endl;
+    //cout << "Binary: " << binaryString << endl;
+
+    if(isNeg){
+        binaryString = "-" + binaryString;
+    }
 
     return binaryString;
 }
@@ -136,8 +185,4 @@ bool ReallyLongInt::absGreater(const ReallyLongInt& other) const{
     }
 
     return false;
-}
-
-unsigned int ReallyLongInt::getSize() const{
-    return size;
 }

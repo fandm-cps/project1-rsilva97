@@ -1,0 +1,1570 @@
+        -:    0:Source:/usr/include/c++/7/bits/shared_ptr.h
+        -:    0:Graph:ReallyLongInt_TEST.gcno
+        -:    0:Data:-
+        -:    0:Runs:0
+        -:    0:Programs:0
+        -:    1:// shared_ptr and weak_ptr implementation -*- C++ -*-
+        -:    2:
+        -:    3:// Copyright (C) 2007-2017 Free Software Foundation, Inc.
+        -:    4://
+        -:    5:// This file is part of the GNU ISO C++ Library.  This library is free
+        -:    6:// software; you can redistribute it and/or modify it under the
+        -:    7:// terms of the GNU General Public License as published by the
+        -:    8:// Free Software Foundation; either version 3, or (at your option)
+        -:    9:// any later version.
+        -:   10:
+        -:   11:// This library is distributed in the hope that it will be useful,
+        -:   12:// but WITHOUT ANY WARRANTY; without even the implied warranty of
+        -:   13:// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        -:   14:// GNU General Public License for more details.
+        -:   15:
+        -:   16:// Under Section 7 of GPL version 3, you are granted additional
+        -:   17:// permissions described in the GCC Runtime Library Exception, version
+        -:   18:// 3.1, as published by the Free Software Foundation.
+        -:   19:
+        -:   20:// You should have received a copy of the GNU General Public License and
+        -:   21:// a copy of the GCC Runtime Library Exception along with this program;
+        -:   22:// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+        -:   23:// <http://www.gnu.org/licenses/>.
+        -:   24:
+        -:   25:// GCC Note: Based on files from version 1.32.0 of the Boost library.
+        -:   26:
+        -:   27://  shared_count.hpp
+        -:   28://  Copyright (c) 2001, 2002, 2003 Peter Dimov and Multi Media Ltd.
+        -:   29:
+        -:   30://  shared_ptr.hpp
+        -:   31://  Copyright (C) 1998, 1999 Greg Colvin and Beman Dawes.
+        -:   32://  Copyright (C) 2001, 2002, 2003 Peter Dimov
+        -:   33:
+        -:   34://  weak_ptr.hpp
+        -:   35://  Copyright (C) 2001, 2002, 2003 Peter Dimov
+        -:   36:
+        -:   37://  enable_shared_from_this.hpp
+        -:   38://  Copyright (C) 2002 Peter Dimov
+        -:   39:
+        -:   40:// Distributed under the Boost Software License, Version 1.0. (See
+        -:   41:// accompanying file LICENSE_1_0.txt or copy at
+        -:   42:// http://www.boost.org/LICENSE_1_0.txt)
+        -:   43:
+        -:   44:/** @file
+        -:   45: *  This is an internal header file, included by other library headers.
+        -:   46: *  Do not attempt to use it directly. @headername{memory}
+        -:   47: */
+        -:   48:
+        -:   49:#ifndef _SHARED_PTR_H
+        -:   50:#define _SHARED_PTR_H 1
+        -:   51:
+        -:   52:#include <bits/shared_ptr_base.h>
+        -:   53:
+        -:   54:namespace std _GLIBCXX_VISIBILITY(default)
+        -:   55:{
+        -:   56:_GLIBCXX_BEGIN_NAMESPACE_VERSION
+        -:   57:
+        -:   58:  /**
+        -:   59:   * @addtogroup pointer_abstractions
+        -:   60:   * @{
+        -:   61:   */
+        -:   62:
+        -:   63:  /// 20.7.2.2.11 shared_ptr I/O
+        -:   64:  template<typename _Ch, typename _Tr, typename _Tp, _Lock_policy _Lp>
+        -:   65:    inline std::basic_ostream<_Ch, _Tr>&
+        -:   66:    operator<<(std::basic_ostream<_Ch, _Tr>& __os,
+        -:   67:	       const __shared_ptr<_Tp, _Lp>& __p)
+        -:   68:    {
+        -:   69:      __os << __p.get();
+        -:   70:      return __os;
+        -:   71:    }
+        -:   72:
+        -:   73:  /// 20.7.2.2.10 shared_ptr get_deleter
+        -:   74:  template<typename _Del, typename _Tp, _Lock_policy _Lp>
+        -:   75:    inline _Del*
+        -:   76:    get_deleter(const __shared_ptr<_Tp, _Lp>& __p) noexcept
+        -:   77:    {
+        -:   78:#if __cpp_rtti
+        -:   79:      return static_cast<_Del*>(__p._M_get_deleter(typeid(_Del)));
+        -:   80:#else
+        -:   81:      return 0;
+        -:   82:#endif
+        -:   83:    }
+        -:   84:
+        -:   85:
+        -:   86:  /**
+        -:   87:   *  @brief  A smart pointer with reference-counted copy semantics.
+        -:   88:   *
+        -:   89:   *  The object pointed to is deleted when the last shared_ptr pointing to
+        -:   90:   *  it is destroyed or reset.
+        -:   91:  */
+        -:   92:  template<typename _Tp>
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE11SectionNodeEEaSERKS5_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_12TestRunStatsENS4_INS0_14TestGroupStatsENS4_INS0_13TestCaseStatsENS3_11SectionNodeEEEEEEEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEaSERKS4_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrINSt8__detail4_NFAINSt7__cxx1112regex_traitsIcEEEEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail13BoundValueRefIdEEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail13BoundValueRefIjEEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE4_EEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE3_EEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE2_EEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE1_EEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE5_EEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE0_EEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlbE9_EEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE_EEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUliE8_EEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE6_EEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch17ReporterRegistrarINS0_11XmlReporterEE15ReporterFactoryEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch17ReporterRegistrarINS0_13JunitReporterEE15ReporterFactoryEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_14TestGroupStatsENS4_INS0_13TestCaseStatsENS3_11SectionNodeEEEEEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_13TestCaseStatsENS3_11SectionNodeEEEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch17ReporterRegistrarINS0_15ConsoleReporterEE15ReporterFactoryEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch16IReporterFactoryEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch17ReporterRegistrarINS0_15CompactReporterEE15ReporterFactoryEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch8TestSpec10TagPatternEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch8TestSpec15ExcludedPatternEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch8TestSpec11NamePatternEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail13BoundValueRefISt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaISA_EEEEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail15BoundFlagLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlbE7_EEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail15BoundFlagLambdaIZNS2_4HelpC4ERbEUlbE_EEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE11SectionNodeEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch8TestSpec7PatternEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch16TestCaseTracking14SectionTrackerEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch12ITestInvokerEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch6ConfigEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch16TestCaseTracking8ITrackerEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch10Generators16GeneratorTrackerEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIKNSt8__detail4_NFAINSt7__cxx1112regex_traitsIcEEEEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIKN5Catch7IConfigEEaSERKS3_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIKN5Catch7IConfigEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail17BoundValueRefBaseEEaSERKS4_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEaSERKS6_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail12BoundFlagRefEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail13BoundValueRefINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail17BoundValueRefBaseEED2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEED2Ev called 0 returned 0% blocks executed 0%
+    #####:   93:    class shared_ptr : public __shared_ptr<_Tp>
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+call   11 never executed
+call   12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+call   19 never executed
+call   20 never executed
+call   21 never executed
+call   22 never executed
+call   23 never executed
+call   24 never executed
+call   25 never executed
+call   26 never executed
+call   27 never executed
+call   28 never executed
+call   29 never executed
+call   30 never executed
+call   31 never executed
+call   32 never executed
+call   33 never executed
+call   34 never executed
+call   35 never executed
+call   36 never executed
+call   37 never executed
+call   38 never executed
+call   39 never executed
+call   40 never executed
+call   41 never executed
+call   42 never executed
+call   43 never executed
+call   44 never executed
+call   45 never executed
+        -:   94:    {
+        -:   95:      template<typename... _Args>
+        -:   96:	using _Constructible = typename enable_if<
+        -:   97:	  is_constructible<__shared_ptr<_Tp>, _Args...>::value
+        -:   98:	>::type;
+        -:   99:
+        -:  100:      template<typename _Arg>
+        -:  101:	using _Assignable = typename enable_if<
+        -:  102:	  is_assignable<__shared_ptr<_Tp>&, _Arg>::value, shared_ptr&
+        -:  103:	>::type;
+        -:  104:
+        -:  105:    public:
+        -:  106:
+        -:  107:      using element_type = typename __shared_ptr<_Tp>::element_type;
+        -:  108:
+        -:  109:#if __cplusplus > 201402L
+        -:  110:# define __cpp_lib_shared_ptr_weak_type 201606
+        -:  111:      using weak_type = weak_ptr<_Tp>;
+        -:  112:#endif
+        -:  113:      /**
+        -:  114:       *  @brief  Construct an empty %shared_ptr.
+        -:  115:       *  @post   use_count()==0 && get()==0
+        -:  116:       */
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE11SectionNodeEEC2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch6ConfigEEC2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIKN5Catch7IConfigEEC2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail17BoundValueRefBaseEEC2Ev called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch16TestCaseTracking8ITrackerEEC1Ev called 0 returned 0% blocks executed 0%
+    #####:  117:      constexpr shared_ptr() noexcept : __shared_ptr<_Tp>() { }
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+        -:  118:
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_12TestRunStatsENS4_INS0_14TestGroupStatsENS4_INS0_13TestCaseStatsENS3_11SectionNodeEEEEEEEEC2ERKSC_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_14TestGroupStatsENS4_INS0_13TestCaseStatsENS3_11SectionNodeEEEEEEC2ERKSA_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_13TestCaseStatsENS3_11SectionNodeEEEEC2ERKS8_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE11SectionNodeEEC2ERKS5_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch16IReporterFactoryEEC2ERKS2_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail17BoundValueRefBaseEEC2ERKS4_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEC2ERKS6_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2ERKS4_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch8TestSpec7PatternEEC2ERKS3_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch16TestCaseTracking8ITrackerEEC2ERKS3_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch12ITestInvokerEEC2ERKS2_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch6ConfigEEC2ERKS2_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIKN5Catch7IConfigEEC2ERKS3_ called 0 returned 0% blocks executed 0%
+    #####:  119:      shared_ptr(const shared_ptr&) noexcept = default;
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+call   11 never executed
+call   12 never executed
+        -:  120:
+        -:  121:      /**
+        -:  122:       *  @brief  Construct a %shared_ptr that owns the pointer @a __p.
+        -:  123:       *  @param  __p  A pointer that is convertible to element_type*.
+        -:  124:       *  @post   use_count() == 1 && get() == __p
+        -:  125:       *  @throw  std::bad_alloc, in which case @c delete @a __p is called.
+        -:  126:       */
+        -:  127:      template<typename _Yp, typename = _Constructible<_Yp*>>
+        -:  128:	explicit
+function _ZNSt10shared_ptrIN5Catch12ITestInvokerEEC2IS1_vEEPT_ called 0 returned 0% blocks executed 0%
+    #####:  129:	shared_ptr(_Yp* __p) : __shared_ptr<_Tp>(__p) { }
+call    0 never executed
+        -:  130:
+        -:  131:      /**
+        -:  132:       *  @brief  Construct a %shared_ptr that owns the pointer @a __p
+        -:  133:       *          and the deleter @a __d.
+        -:  134:       *  @param  __p  A pointer.
+        -:  135:       *  @param  __d  A deleter.
+        -:  136:       *  @post   use_count() == 1 && get() == __p
+        -:  137:       *  @throw  std::bad_alloc, in which case @a __d(__p) is called.
+        -:  138:       *
+        -:  139:       *  Requirements: _Deleter's copy constructor and destructor must
+        -:  140:       *  not throw
+        -:  141:       *
+        -:  142:       *  __shared_ptr will release __p by calling __d(__p)
+        -:  143:       */
+        -:  144:      template<typename _Yp, typename _Deleter,
+        -:  145:	       typename = _Constructible<_Yp*, _Deleter>>
+        -:  146:	shared_ptr(_Yp* __p, _Deleter __d)
+        -:  147:        : __shared_ptr<_Tp>(__p, std::move(__d)) { }
+        -:  148:
+        -:  149:      /**
+        -:  150:       *  @brief  Construct a %shared_ptr that owns a null pointer
+        -:  151:       *          and the deleter @a __d.
+        -:  152:       *  @param  __p  A null pointer constant.
+        -:  153:       *  @param  __d  A deleter.
+        -:  154:       *  @post   use_count() == 1 && get() == __p
+        -:  155:       *  @throw  std::bad_alloc, in which case @a __d(__p) is called.
+        -:  156:       *
+        -:  157:       *  Requirements: _Deleter's copy constructor and destructor must
+        -:  158:       *  not throw
+        -:  159:       *
+        -:  160:       *  The last owner will call __d(__p)
+        -:  161:       */
+        -:  162:      template<typename _Deleter>
+        -:  163:	shared_ptr(nullptr_t __p, _Deleter __d)
+        -:  164:        : __shared_ptr<_Tp>(__p, std::move(__d)) { }
+        -:  165:
+        -:  166:      /**
+        -:  167:       *  @brief  Construct a %shared_ptr that owns the pointer @a __p
+        -:  168:       *          and the deleter @a __d.
+        -:  169:       *  @param  __p  A pointer.
+        -:  170:       *  @param  __d  A deleter.
+        -:  171:       *  @param  __a  An allocator.
+        -:  172:       *  @post   use_count() == 1 && get() == __p
+        -:  173:       *  @throw  std::bad_alloc, in which case @a __d(__p) is called.
+        -:  174:       *
+        -:  175:       *  Requirements: _Deleter's copy constructor and destructor must
+        -:  176:       *  not throw _Alloc's copy constructor and destructor must not
+        -:  177:       *  throw.
+        -:  178:       *
+        -:  179:       *  __shared_ptr will release __p by calling __d(__p)
+        -:  180:       */
+        -:  181:      template<typename _Yp, typename _Deleter, typename _Alloc,
+        -:  182:	       typename = _Constructible<_Yp*, _Deleter, _Alloc>>
+        -:  183:	shared_ptr(_Yp* __p, _Deleter __d, _Alloc __a)
+        -:  184:	: __shared_ptr<_Tp>(__p, std::move(__d), std::move(__a)) { }
+        -:  185:
+        -:  186:      /**
+        -:  187:       *  @brief  Construct a %shared_ptr that owns a null pointer
+        -:  188:       *          and the deleter @a __d.
+        -:  189:       *  @param  __p  A null pointer constant.
+        -:  190:       *  @param  __d  A deleter.
+        -:  191:       *  @param  __a  An allocator.
+        -:  192:       *  @post   use_count() == 1 && get() == __p
+        -:  193:       *  @throw  std::bad_alloc, in which case @a __d(__p) is called.
+        -:  194:       *
+        -:  195:       *  Requirements: _Deleter's copy constructor and destructor must
+        -:  196:       *  not throw _Alloc's copy constructor and destructor must not
+        -:  197:       *  throw.
+        -:  198:       *
+        -:  199:       *  The last owner will call __d(__p)
+        -:  200:       */
+        -:  201:      template<typename _Deleter, typename _Alloc>
+        -:  202:	shared_ptr(nullptr_t __p, _Deleter __d, _Alloc __a)
+        -:  203:	: __shared_ptr<_Tp>(__p, std::move(__d), std::move(__a)) { }
+        -:  204:
+        -:  205:      // Aliasing constructor
+        -:  206:
+        -:  207:      /**
+        -:  208:       *  @brief  Constructs a %shared_ptr instance that stores @a __p
+        -:  209:       *          and shares ownership with @a __r.
+        -:  210:       *  @param  __r  A %shared_ptr.
+        -:  211:       *  @param  __p  A pointer that will remain valid while @a *__r is valid.
+        -:  212:       *  @post   get() == __p && use_count() == __r.use_count()
+        -:  213:       *
+        -:  214:       *  This can be used to construct a @c shared_ptr to a sub-object
+        -:  215:       *  of an object managed by an existing @c shared_ptr.
+        -:  216:       *
+        -:  217:       * @code
+        -:  218:       * shared_ptr< pair<int,int> > pii(new pair<int,int>());
+        -:  219:       * shared_ptr<int> pi(pii, &pii->first);
+        -:  220:       * assert(pii.use_count() == 2);
+        -:  221:       * @endcode
+        -:  222:       */
+        -:  223:      template<typename _Yp>
+function _ZNSt10shared_ptrIN5Catch16TestCaseTracking14SectionTrackerEEC2INS1_8ITrackerEEERKS_IT_EPS2_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch10Generators16GeneratorTrackerEEC2INS0_16TestCaseTracking8ITrackerEEERKS_IT_EPS2_ called 0 returned 0% blocks executed 0%
+    #####:  224:	shared_ptr(const shared_ptr<_Yp>& __r, element_type* __p) noexcept
+    #####:  225:	: __shared_ptr<_Tp>(__r, __p) { }
+call    0 never executed
+call    1 never executed
+        -:  226:
+        -:  227:      /**
+        -:  228:       *  @brief  If @a __r is empty, constructs an empty %shared_ptr;
+        -:  229:       *          otherwise construct a %shared_ptr that shares ownership
+        -:  230:       *          with @a __r.
+        -:  231:       *  @param  __r  A %shared_ptr.
+        -:  232:       *  @post   get() == __r.get() && use_count() == __r.use_count()
+        -:  233:       */
+        -:  234:      template<typename _Yp,
+        -:  235:	       typename = _Constructible<const shared_ptr<_Yp>&>>
+function _ZNSt10shared_ptrIN5Catch16TestCaseTracking8ITrackerEEC2INS1_14SectionTrackerEvEERKS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch16TestCaseTracking8ITrackerEEC2INS0_10Generators16GeneratorTrackerEvEERKS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIKN5Catch7IConfigEEC2INS0_6ConfigEvEERKS_IT_E called 0 returned 0% blocks executed 0%
+    #####:  236:	shared_ptr(const shared_ptr<_Yp>& __r) noexcept
+    #####:  237:        : __shared_ptr<_Tp>(__r) { }
+call    0 never executed
+call    1 never executed
+call    2 never executed
+        -:  238:
+        -:  239:      /**
+        -:  240:       *  @brief  Move-constructs a %shared_ptr instance from @a __r.
+        -:  241:       *  @param  __r  A %shared_ptr rvalue.
+        -:  242:       *  @post   *this contains the old value of @a __r, @a __r is empty.
+        -:  243:       */
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_12TestRunStatsENS4_INS0_14TestGroupStatsENS4_INS0_13TestCaseStatsENS3_11SectionNodeEEEEEEEEC2EOSC_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE11SectionNodeEEC2EOS5_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch16IReporterFactoryEEC2EOS2_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2EOS4_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_14TestGroupStatsENS4_INS0_13TestCaseStatsENS3_11SectionNodeEEEEEEC2EOSA_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_13TestCaseStatsENS3_11SectionNodeEEEEC2EOS8_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch8TestSpec7PatternEEC2EOS3_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch12ITestInvokerEEC2EOS2_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch16TestCaseTracking8ITrackerEEC2EOS3_ called 0 returned 0% blocks executed 0%
+    #####:  244:      shared_ptr(shared_ptr&& __r) noexcept
+    #####:  245:      : __shared_ptr<_Tp>(std::move(__r)) { }
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+call   11 never executed
+call   12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+        -:  246:
+        -:  247:      /**
+        -:  248:       *  @brief  Move-constructs a %shared_ptr instance from @a __r.
+        -:  249:       *  @param  __r  A %shared_ptr rvalue.
+        -:  250:       *  @post   *this contains the old value of @a __r, @a __r is empty.
+        -:  251:       */
+        -:  252:      template<typename _Yp, typename = _Constructible<shared_ptr<_Yp>>>
+function _ZNSt10shared_ptrIKNSt8__detail4_NFAINSt7__cxx1112regex_traitsIcEEEEEC2IS5_vEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2INS2_13BoundValueRefIdEEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2INS2_13BoundValueRefIjEEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2INS2_11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE4_EEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2INS2_11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE3_EEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2INS2_11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE2_EEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2INS2_11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE1_EEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2INS2_11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE5_EEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2INS2_11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE0_EEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2INS2_11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlbE9_EEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2INS2_11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE_EEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2INS2_11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUliE8_EEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2INS2_11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE6_EEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2INS2_13BoundValueRefINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch16IReporterFactoryEEC2INS0_17ReporterRegistrarINS0_11XmlReporterEE15ReporterFactoryEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch16IReporterFactoryEEC2INS0_17ReporterRegistrarINS0_13JunitReporterEE15ReporterFactoryEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch16IReporterFactoryEEC2INS0_17ReporterRegistrarINS0_15ConsoleReporterEE15ReporterFactoryEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch16IReporterFactoryEEC2INS0_17ReporterRegistrarINS0_15CompactReporterEE15ReporterFactoryEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch8TestSpec7PatternEEC2INS1_10TagPatternEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch8TestSpec7PatternEEC2INS1_11NamePatternEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2INS2_13BoundValueRefISt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaISD_EEEEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2INS2_15BoundFlagLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlbE7_EEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2INS2_15BoundFlagLambdaIZNS2_4HelpC4ERbEUlbE_EEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail8BoundRefEEC2INS2_12BoundFlagRefEvEEOS_IT_E called 0 returned 0% blocks executed 0%
+    #####:  253:	shared_ptr(shared_ptr<_Yp>&& __r) noexcept
+    #####:  254:	: __shared_ptr<_Tp>(std::move(__r)) { }
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+call   11 never executed
+call   12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+call   19 never executed
+call   20 never executed
+call   21 never executed
+call   22 never executed
+call   23 never executed
+call   24 never executed
+call   25 never executed
+call   26 never executed
+call   27 never executed
+call   28 never executed
+call   29 never executed
+call   30 never executed
+call   31 never executed
+call   32 never executed
+call   33 never executed
+call   34 never executed
+call   35 never executed
+call   36 never executed
+call   37 never executed
+call   38 never executed
+call   39 never executed
+call   40 never executed
+call   41 never executed
+call   42 never executed
+call   43 never executed
+call   44 never executed
+call   45 never executed
+call   46 never executed
+call   47 never executed
+        -:  255:
+        -:  256:      /**
+        -:  257:       *  @brief  Constructs a %shared_ptr that shares ownership with @a __r
+        -:  258:       *          and stores a copy of the pointer stored in @a __r.
+        -:  259:       *  @param  __r  A weak_ptr.
+        -:  260:       *  @post   use_count() == __r.use_count()
+        -:  261:       *  @throw  bad_weak_ptr when __r.expired(),
+        -:  262:       *          in which case the constructor has no effect.
+        -:  263:       */
+        -:  264:      template<typename _Yp, typename = _Constructible<const weak_ptr<_Yp>&>>
+        -:  265:	explicit shared_ptr(const weak_ptr<_Yp>& __r)
+        -:  266:	: __shared_ptr<_Tp>(__r) { }
+        -:  267:
+        -:  268:#if _GLIBCXX_USE_DEPRECATED
+        -:  269:      template<typename _Yp, typename = _Constructible<auto_ptr<_Yp>>>
+        -:  270:	shared_ptr(auto_ptr<_Yp>&& __r);
+        -:  271:#endif
+        -:  272:
+        -:  273:      // _GLIBCXX_RESOLVE_LIB_DEFECTS
+        -:  274:      // 2399. shared_ptr's constructor from unique_ptr should be constrained
+        -:  275:      template<typename _Yp, typename _Del,
+        -:  276:	       typename = _Constructible<unique_ptr<_Yp, _Del>>>
+        -:  277:	shared_ptr(unique_ptr<_Yp, _Del>&& __r)
+        -:  278:	: __shared_ptr<_Tp>(std::move(__r)) { }
+        -:  279:
+        -:  280:#if __cplusplus <= 201402L && _GLIBCXX_USE_DEPRECATED
+        -:  281:      // This non-standard constructor exists to support conversions that
+        -:  282:      // were possible in C++11 and C++14 but are ill-formed in C++17.
+        -:  283:      // If an exception is thrown this constructor has no effect.
+        -:  284:      template<typename _Yp, typename _Del,
+        -:  285:		_Constructible<unique_ptr<_Yp, _Del>, __sp_array_delete>* = 0>
+        -:  286:	shared_ptr(unique_ptr<_Yp, _Del>&& __r)
+        -:  287:	: __shared_ptr<_Tp>(std::move(__r), __sp_array_delete()) { }
+        -:  288:#endif
+        -:  289:
+        -:  290:      /**
+        -:  291:       *  @brief  Construct an empty %shared_ptr.
+        -:  292:       *  @post   use_count() == 0 && get() == nullptr
+        -:  293:       */
+function _ZNSt10shared_ptrIN5Catch16TestCaseTracking8ITrackerEEC2EDn called 0 returned 0% blocks executed 0%
+    #####:  294:      constexpr shared_ptr(nullptr_t) noexcept : shared_ptr() { }
+call    0 never executed
+        -:  295:
+        -:  296:      shared_ptr& operator=(const shared_ptr&) noexcept = default;
+        -:  297:
+        -:  298:      template<typename _Yp>
+        -:  299:	_Assignable<const shared_ptr<_Yp>&>
+        -:  300:	operator=(const shared_ptr<_Yp>& __r) noexcept
+        -:  301:	{
+        -:  302:	  this->__shared_ptr<_Tp>::operator=(__r);
+        -:  303:	  return *this;
+        -:  304:	}
+        -:  305:
+        -:  306:#if _GLIBCXX_USE_DEPRECATED
+        -:  307:      template<typename _Yp>
+        -:  308:	_Assignable<auto_ptr<_Yp>>
+        -:  309:	operator=(auto_ptr<_Yp>&& __r)
+        -:  310:	{
+        -:  311:	  this->__shared_ptr<_Tp>::operator=(std::move(__r));
+        -:  312:	  return *this;
+        -:  313:	}
+        -:  314:#endif
+        -:  315:
+        -:  316:      shared_ptr&
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE11SectionNodeEEaSEOS5_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch12ITestInvokerEEaSEOS2_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch16TestCaseTracking14SectionTrackerEEaSEOS3_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch6ConfigEEaSEOS2_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail17BoundValueRefBaseEEaSEOS4_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEaSEOS6_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch10Generators16GeneratorTrackerEEaSEOS3_ called 0 returned 0% blocks executed 0%
+    #####:  317:      operator=(shared_ptr&& __r) noexcept
+        -:  318:      {
+    #####:  319:	this->__shared_ptr<_Tp>::operator=(std::move(__r));
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+call   11 never executed
+call   12 never executed
+call   13 never executed
+    #####:  320:	return *this;
+        -:  321:      }
+        -:  322:
+        -:  323:      template<class _Yp>
+        -:  324:	_Assignable<shared_ptr<_Yp>>
+function _ZNSt10shared_ptrIN5Catch8TestSpec7PatternEEaSINS1_15ExcludedPatternEEENSt9enable_ifIXsrSt13is_assignableIRSt12__shared_ptrIS2_LN9__gnu_cxx12_Lock_policyE2EES_IT_EE5valueERS3_E4typeEOSE_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch16TestCaseTracking8ITrackerEEaSINS1_14SectionTrackerEEENSt9enable_ifIXsrSt13is_assignableIRSt12__shared_ptrIS2_LN9__gnu_cxx12_Lock_policyE2EES_IT_EE5valueERS3_E4typeEOSE_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail17BoundValueRefBaseEEaSINS2_13BoundValueRefINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEEENSt9enable_ifIXsrSt13is_assignableIRSt12__shared_ptrIS3_LN9__gnu_cxx12_Lock_policyE2EES_IT_EE5valueERS4_E4typeEOSM_ called 0 returned 0% blocks executed 0%
+    #####:  325:	operator=(shared_ptr<_Yp>&& __r) noexcept
+        -:  326:	{
+    #####:  327:	  this->__shared_ptr<_Tp>::operator=(std::move(__r));
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+    #####:  328:	  return *this;
+        -:  329:	}
+        -:  330:
+        -:  331:      template<typename _Yp, typename _Del>
+        -:  332:	_Assignable<unique_ptr<_Yp, _Del>>
+        -:  333:	operator=(unique_ptr<_Yp, _Del>&& __r)
+        -:  334:	{
+        -:  335:	  this->__shared_ptr<_Tp>::operator=(std::move(__r));
+        -:  336:	  return *this;
+        -:  337:	}
+        -:  338:
+        -:  339:    private:
+        -:  340:      // This constructor is non-standard, it is used by allocate_shared.
+        -:  341:      template<typename _Alloc, typename... _Args>
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_12TestRunStatsENS4_INS0_14TestGroupStatsENS4_INS0_13TestCaseStatsENS3_11SectionNodeEEEEEEEEC2ISaISB_EJRKS5_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE11SectionNodeEEC2ISaIS4_EJRNS0_12SectionStatsEEEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrINSt8__detail4_NFAINSt7__cxx1112regex_traitsIcEEEEEC2ISaIS5_EJRKSt6localeRNSt15regex_constants18syntax_option_typeEEEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail13BoundValueRefIdEEEC2ISaIS4_EJRdEEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail13BoundValueRefIjEEEC2ISaIS4_EJRjEEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE4_EEEC2ISaISF_EJRKSE_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE3_EEEC2ISaISF_EJRKSE_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE2_EEEC2ISaISF_EJRKSE_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE1_EEEC2ISaISF_EJRKSE_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE5_EEEC2ISaISF_EJRKSE_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE0_EEEC2ISaISF_EJRKSE_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlbE9_EEEC2ISaIS7_EJRKS6_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE_EEEC2ISaISF_EJRKSE_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUliE8_EEEC2ISaIS7_EJRKS6_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE6_EEEC2ISaISF_EJRKSE_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch17ReporterRegistrarINS0_11XmlReporterEE15ReporterFactoryEEC2ISaIS4_EJEEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch17ReporterRegistrarINS0_13JunitReporterEE15ReporterFactoryEEC2ISaIS4_EJEEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_14TestGroupStatsENS4_INS0_13TestCaseStatsENS3_11SectionNodeEEEEEEC2ISaIS9_EJRKS5_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_13TestCaseStatsENS3_11SectionNodeEEEEC2ISaIS7_EJRKS5_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch17ReporterRegistrarINS0_15ConsoleReporterEE15ReporterFactoryEEC2ISaIS4_EJEEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch17ReporterRegistrarINS0_15CompactReporterEE15ReporterFactoryEEC2ISaIS4_EJEEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch8TestSpec10TagPatternEEC2ISaIS2_EJRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESC_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch8TestSpec15ExcludedPatternEEC2ISaIS2_EJRS_INS1_7PatternEEEEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch8TestSpec11NamePatternEEC2ISaIS2_EJRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESC_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail13BoundValueRefISt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaISA_EEEEEC2ISaISD_EJRSC_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail15BoundFlagLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlbE7_EEEC2ISaIS7_EJRKS6_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail15BoundFlagLambdaIZNS2_4HelpC4ERbEUlbE_EEEC2ISaIS7_EJRKS6_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch16TestCaseTracking14SectionTrackerEEC2ISaIS2_EJRKNS1_15NameAndLocationERNS1_14TrackerContextEPNS1_8ITrackerEEEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch16TestCaseTracking14SectionTrackerEEC2ISaIS2_EJNS1_15NameAndLocationERNS1_14TrackerContextEDnEEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch6ConfigEEC2ISaIS1_EJRNS0_10ConfigDataEEEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch10Generators16GeneratorTrackerEEC2ISaIS2_EJRKNS0_16TestCaseTracking15NameAndLocationERNS6_14TrackerContextEPNS6_8ITrackerEEEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail12BoundFlagRefEEC2ISaIS3_EJRbEEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrIN5Catch5clara6detail13BoundValueRefINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEEC2ISaISA_EJRS9_EEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+function _ZNSt10shared_ptrINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEC2ISaIS5_EJRA13_KcEEESt19_Sp_make_shared_tagRKT_DpOT0_ called 0 returned 0% blocks executed 0%
+    #####:  342:	shared_ptr(_Sp_make_shared_tag __tag, const _Alloc& __a,
+        -:  343:		   _Args&&... __args)
+    #####:  344:	: __shared_ptr<_Tp>(__tag, __a, std::forward<_Args>(__args)...)
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+call    4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+call   11 never executed
+call   12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+call   18 never executed
+call   19 never executed
+call   20 never executed
+call   21 never executed
+call   22 never executed
+call   23 never executed
+call   24 never executed
+call   25 never executed
+call   26 never executed
+call   27 never executed
+call   28 never executed
+call   29 never executed
+call   30 never executed
+call   31 never executed
+call   32 never executed
+call   33 never executed
+call   34 never executed
+call   35 never executed
+call   36 never executed
+call   37 never executed
+call   38 never executed
+call   39 never executed
+call   40 never executed
+call   41 never executed
+call   42 never executed
+call   43 never executed
+call   44 never executed
+call   45 never executed
+call   46 never executed
+call   47 never executed
+call   48 never executed
+call   49 never executed
+call   50 never executed
+call   51 never executed
+call   52 never executed
+call   53 never executed
+call   54 never executed
+call   55 never executed
+call   56 never executed
+call   57 never executed
+call   58 never executed
+call   59 never executed
+call   60 never executed
+call   61 never executed
+call   62 never executed
+call   63 never executed
+call   64 never executed
+call   65 never executed
+call   66 never executed
+call   67 never executed
+call   68 never executed
+call   69 never executed
+call   70 never executed
+call   71 never executed
+call   72 never executed
+    #####:  345:	{ }
+        -:  346:
+        -:  347:      template<typename _Yp, typename _Alloc, typename... _Args>
+        -:  348:	friend shared_ptr<_Yp>
+        -:  349:	allocate_shared(const _Alloc& __a, _Args&&... __args);
+        -:  350:
+        -:  351:      // This constructor is non-standard, it is used by weak_ptr::lock().
+        -:  352:      shared_ptr(const weak_ptr<_Tp>& __r, std::nothrow_t)
+        -:  353:      : __shared_ptr<_Tp>(__r, std::nothrow) { }
+        -:  354:
+        -:  355:      friend class weak_ptr<_Tp>;
+        -:  356:    };
+        -:  357:
+        -:  358:#if __cpp_deduction_guides >= 201606
+        -:  359:  template<typename _Tp>
+        -:  360:    shared_ptr(weak_ptr<_Tp>) ->  shared_ptr<_Tp>;
+        -:  361:  template<typename _Tp, typename _Del>
+        -:  362:    shared_ptr(unique_ptr<_Tp, _Del>) ->  shared_ptr<_Tp>;
+        -:  363:#endif
+        -:  364:
+        -:  365:  // 20.7.2.2.7 shared_ptr comparisons
+        -:  366:  template<typename _Tp, typename _Up>
+        -:  367:    inline bool
+        -:  368:    operator==(const shared_ptr<_Tp>& __a, const shared_ptr<_Up>& __b) noexcept
+        -:  369:    { return __a.get() == __b.get(); }
+        -:  370:
+        -:  371:  template<typename _Tp>
+        -:  372:    inline bool
+function _ZSteqIKNSt8__detail4_NFAINSt7__cxx1112regex_traitsIcEEEEEbRKSt10shared_ptrIT_EDn called 0 returned 0% blocks executed 0%
+    #####:  373:    operator==(const shared_ptr<_Tp>& __a, nullptr_t) noexcept
+    #####:  374:    { return !__a; }
+call    0 never executed
+        -:  375:
+        -:  376:  template<typename _Tp>
+        -:  377:    inline bool
+        -:  378:    operator==(nullptr_t, const shared_ptr<_Tp>& __a) noexcept
+        -:  379:    { return !__a; }
+        -:  380:
+        -:  381:  template<typename _Tp, typename _Up>
+        -:  382:    inline bool
+        -:  383:    operator!=(const shared_ptr<_Tp>& __a, const shared_ptr<_Up>& __b) noexcept
+        -:  384:    { return __a.get() != __b.get(); }
+        -:  385:
+        -:  386:  template<typename _Tp>
+        -:  387:    inline bool
+        -:  388:    operator!=(const shared_ptr<_Tp>& __a, nullptr_t) noexcept
+        -:  389:    { return (bool)__a; }
+        -:  390:
+        -:  391:  template<typename _Tp>
+        -:  392:    inline bool
+        -:  393:    operator!=(nullptr_t, const shared_ptr<_Tp>& __a) noexcept
+        -:  394:    { return (bool)__a; }
+        -:  395:
+        -:  396:  template<typename _Tp, typename _Up>
+        -:  397:    inline bool
+        -:  398:    operator<(const shared_ptr<_Tp>& __a, const shared_ptr<_Up>& __b) noexcept
+        -:  399:    {
+        -:  400:      using _Tp_elt = typename shared_ptr<_Tp>::element_type;
+        -:  401:      using _Up_elt = typename shared_ptr<_Up>::element_type;
+        -:  402:      using _Vp = typename common_type<_Tp_elt*, _Up_elt*>::type;
+        -:  403:      return less<_Vp>()(__a.get(), __b.get());
+        -:  404:    }
+        -:  405:
+        -:  406:  template<typename _Tp>
+        -:  407:    inline bool
+        -:  408:    operator<(const shared_ptr<_Tp>& __a, nullptr_t) noexcept
+        -:  409:    {
+        -:  410:      using _Tp_elt = typename shared_ptr<_Tp>::element_type;
+        -:  411:      return less<_Tp_elt*>()(__a.get(), nullptr);
+        -:  412:    }
+        -:  413:
+        -:  414:  template<typename _Tp>
+        -:  415:    inline bool
+        -:  416:    operator<(nullptr_t, const shared_ptr<_Tp>& __a) noexcept
+        -:  417:    {
+        -:  418:      using _Tp_elt = typename shared_ptr<_Tp>::element_type;
+        -:  419:      return less<_Tp_elt*>()(nullptr, __a.get());
+        -:  420:    }
+        -:  421:
+        -:  422:  template<typename _Tp, typename _Up>
+        -:  423:    inline bool
+        -:  424:    operator<=(const shared_ptr<_Tp>& __a, const shared_ptr<_Up>& __b) noexcept
+        -:  425:    { return !(__b < __a); }
+        -:  426:
+        -:  427:  template<typename _Tp>
+        -:  428:    inline bool
+        -:  429:    operator<=(const shared_ptr<_Tp>& __a, nullptr_t) noexcept
+        -:  430:    { return !(nullptr < __a); }
+        -:  431:
+        -:  432:  template<typename _Tp>
+        -:  433:    inline bool
+        -:  434:    operator<=(nullptr_t, const shared_ptr<_Tp>& __a) noexcept
+        -:  435:    { return !(__a < nullptr); }
+        -:  436:
+        -:  437:  template<typename _Tp, typename _Up>
+        -:  438:    inline bool
+        -:  439:    operator>(const shared_ptr<_Tp>& __a, const shared_ptr<_Up>& __b) noexcept
+        -:  440:    { return (__b < __a); }
+        -:  441:
+        -:  442:  template<typename _Tp>
+        -:  443:    inline bool
+        -:  444:    operator>(const shared_ptr<_Tp>& __a, nullptr_t) noexcept
+        -:  445:    { return nullptr < __a; }
+        -:  446:
+        -:  447:  template<typename _Tp>
+        -:  448:    inline bool
+        -:  449:    operator>(nullptr_t, const shared_ptr<_Tp>& __a) noexcept
+        -:  450:    { return __a < nullptr; }
+        -:  451:
+        -:  452:  template<typename _Tp, typename _Up>
+        -:  453:    inline bool
+        -:  454:    operator>=(const shared_ptr<_Tp>& __a, const shared_ptr<_Up>& __b) noexcept
+        -:  455:    { return !(__a < __b); }
+        -:  456:
+        -:  457:  template<typename _Tp>
+        -:  458:    inline bool
+        -:  459:    operator>=(const shared_ptr<_Tp>& __a, nullptr_t) noexcept
+        -:  460:    { return !(__a < nullptr); }
+        -:  461:
+        -:  462:  template<typename _Tp>
+        -:  463:    inline bool
+        -:  464:    operator>=(nullptr_t, const shared_ptr<_Tp>& __a) noexcept
+        -:  465:    { return !(nullptr < __a); }
+        -:  466:
+        -:  467:  template<typename _Tp>
+        -:  468:    struct less<shared_ptr<_Tp>> : public _Sp_less<shared_ptr<_Tp>>
+        -:  469:    { };
+        -:  470:
+        -:  471:  // 20.7.2.2.8 shared_ptr specialized algorithms.
+        -:  472:  template<typename _Tp>
+        -:  473:    inline void
+        -:  474:    swap(shared_ptr<_Tp>& __a, shared_ptr<_Tp>& __b) noexcept
+        -:  475:    { __a.swap(__b); }
+        -:  476:
+        -:  477:  // 20.7.2.2.9 shared_ptr casts.
+        -:  478:  template<typename _Tp, typename _Up>
+        -:  479:    inline shared_ptr<_Tp>
+function _ZSt19static_pointer_castIN5Catch16TestCaseTracking14SectionTrackerENS1_8ITrackerEESt10shared_ptrIT_ERKS4_IT0_E called 0 returned 0% blocks executed 0%
+function _ZSt19static_pointer_castIN5Catch10Generators16GeneratorTrackerENS0_16TestCaseTracking8ITrackerEESt10shared_ptrIT_ERKS5_IT0_E called 0 returned 0% blocks executed 0%
+    #####:  480:    static_pointer_cast(const shared_ptr<_Up>& __r) noexcept
+        -:  481:    {
+        -:  482:      using _Sp = shared_ptr<_Tp>;
+    #####:  483:      return _Sp(__r, static_cast<typename _Sp::element_type*>(__r.get()));
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+        -:  484:    }
+        -:  485:
+        -:  486:  template<typename _Tp, typename _Up>
+        -:  487:    inline shared_ptr<_Tp>
+        -:  488:    const_pointer_cast(const shared_ptr<_Up>& __r) noexcept
+        -:  489:    {
+        -:  490:      using _Sp = shared_ptr<_Tp>;
+        -:  491:      return _Sp(__r, const_cast<typename _Sp::element_type*>(__r.get()));
+        -:  492:    }
+        -:  493:
+        -:  494:  template<typename _Tp, typename _Up>
+        -:  495:    inline shared_ptr<_Tp>
+        -:  496:    dynamic_pointer_cast(const shared_ptr<_Up>& __r) noexcept
+        -:  497:    {
+        -:  498:      using _Sp = shared_ptr<_Tp>;
+        -:  499:      if (auto* __p = dynamic_cast<typename _Sp::element_type*>(__r.get()))
+        -:  500:	return _Sp(__r, __p);
+        -:  501:      return _Sp();
+        -:  502:    }
+        -:  503:
+        -:  504:#if __cplusplus > 201402L
+        -:  505:  template<typename _Tp, typename _Up>
+        -:  506:    inline shared_ptr<_Tp>
+        -:  507:    reinterpret_pointer_cast(const shared_ptr<_Up>& __r) noexcept
+        -:  508:    {
+        -:  509:      using _Sp = shared_ptr<_Tp>;
+        -:  510:      return _Sp(__r, reinterpret_cast<typename _Sp::element_type*>(__r.get()));
+        -:  511:    }
+        -:  512:#endif
+        -:  513:
+        -:  514:  /**
+        -:  515:   *  @brief  A smart pointer with weak semantics.
+        -:  516:   *
+        -:  517:   *  With forwarding constructors and assignment operators.
+        -:  518:   */
+        -:  519:  template<typename _Tp>
+        -:  520:    class weak_ptr : public __weak_ptr<_Tp>
+        -:  521:    {
+        -:  522:      template<typename _Arg>
+        -:  523:	using _Constructible = typename enable_if<
+        -:  524:	  is_constructible<__weak_ptr<_Tp>, _Arg>::value
+        -:  525:	>::type;
+        -:  526:
+        -:  527:      template<typename _Arg>
+        -:  528:	using _Assignable = typename enable_if<
+        -:  529:	  is_assignable<__weak_ptr<_Tp>&, _Arg>::value, weak_ptr&
+        -:  530:	>::type;
+        -:  531:
+        -:  532:    public:
+        -:  533:      constexpr weak_ptr() noexcept = default;
+        -:  534:
+        -:  535:      template<typename _Yp,
+        -:  536:	       typename = _Constructible<const shared_ptr<_Yp>&>>
+        -:  537:	weak_ptr(const shared_ptr<_Yp>& __r) noexcept
+        -:  538:	: __weak_ptr<_Tp>(__r) { }
+        -:  539:
+        -:  540:      weak_ptr(const weak_ptr&) noexcept = default;
+        -:  541:
+        -:  542:      template<typename _Yp, typename = _Constructible<const weak_ptr<_Yp>&>>
+        -:  543:	weak_ptr(const weak_ptr<_Yp>& __r) noexcept
+        -:  544:	: __weak_ptr<_Tp>(__r) { }
+        -:  545:
+        -:  546:      weak_ptr(weak_ptr&&) noexcept = default;
+        -:  547:
+        -:  548:      template<typename _Yp, typename = _Constructible<weak_ptr<_Yp>>>
+        -:  549:	weak_ptr(weak_ptr<_Yp>&& __r) noexcept
+        -:  550:	: __weak_ptr<_Tp>(std::move(__r)) { }
+        -:  551:
+        -:  552:      weak_ptr&
+        -:  553:      operator=(const weak_ptr& __r) noexcept = default;
+        -:  554:
+        -:  555:      template<typename _Yp>
+        -:  556:	_Assignable<const weak_ptr<_Yp>&>
+        -:  557:	operator=(const weak_ptr<_Yp>& __r) noexcept
+        -:  558:	{
+        -:  559:	  this->__weak_ptr<_Tp>::operator=(__r);
+        -:  560:	  return *this;
+        -:  561:	}
+        -:  562:
+        -:  563:      template<typename _Yp>
+        -:  564:	_Assignable<const shared_ptr<_Yp>&>
+        -:  565:	operator=(const shared_ptr<_Yp>& __r) noexcept
+        -:  566:	{
+        -:  567:	  this->__weak_ptr<_Tp>::operator=(__r);
+        -:  568:	  return *this;
+        -:  569:	}
+        -:  570:
+        -:  571:      weak_ptr&
+        -:  572:      operator=(weak_ptr&& __r) noexcept = default;
+        -:  573:
+        -:  574:      template<typename _Yp>
+        -:  575:	_Assignable<weak_ptr<_Yp>>
+        -:  576:	operator=(weak_ptr<_Yp>&& __r) noexcept
+        -:  577:	{
+        -:  578:	  this->__weak_ptr<_Tp>::operator=(std::move(__r));
+        -:  579:	  return *this;
+        -:  580:	}
+        -:  581:
+        -:  582:      shared_ptr<_Tp>
+        -:  583:      lock() const noexcept
+        -:  584:      { return shared_ptr<_Tp>(*this, std::nothrow); }
+        -:  585:    };
+        -:  586:
+        -:  587:#if __cpp_deduction_guides >= 201606
+        -:  588:  template<typename _Tp>
+        -:  589:    weak_ptr(shared_ptr<_Tp>) ->  weak_ptr<_Tp>;
+        -:  590:#endif
+        -:  591:
+        -:  592:  // 20.7.2.3.6 weak_ptr specialized algorithms.
+        -:  593:  template<typename _Tp>
+        -:  594:    inline void
+        -:  595:    swap(weak_ptr<_Tp>& __a, weak_ptr<_Tp>& __b) noexcept
+        -:  596:    { __a.swap(__b); }
+        -:  597:
+        -:  598:
+        -:  599:  /// Primary template owner_less
+        -:  600:  template<typename _Tp = void>
+        -:  601:    struct owner_less;
+        -:  602:
+        -:  603:  /// Void specialization of owner_less
+        -:  604:  template<>
+        -:  605:    struct owner_less<void> : _Sp_owner_less<void, void>
+        -:  606:    { };
+        -:  607:
+        -:  608:  /// Partial specialization of owner_less for shared_ptr.
+        -:  609:  template<typename _Tp>
+        -:  610:    struct owner_less<shared_ptr<_Tp>>
+        -:  611:    : public _Sp_owner_less<shared_ptr<_Tp>, weak_ptr<_Tp>>
+        -:  612:    { };
+        -:  613:
+        -:  614:  /// Partial specialization of owner_less for weak_ptr.
+        -:  615:  template<typename _Tp>
+        -:  616:    struct owner_less<weak_ptr<_Tp>>
+        -:  617:    : public _Sp_owner_less<weak_ptr<_Tp>, shared_ptr<_Tp>>
+        -:  618:    { };
+        -:  619:
+        -:  620:  /**
+        -:  621:   *  @brief Base class allowing use of member function shared_from_this.
+        -:  622:   */
+        -:  623:  template<typename _Tp>
+        -:  624:    class enable_shared_from_this
+        -:  625:    {
+        -:  626:    protected:
+        -:  627:      constexpr enable_shared_from_this() noexcept { }
+        -:  628:
+        -:  629:      enable_shared_from_this(const enable_shared_from_this&) noexcept { }
+        -:  630:
+        -:  631:      enable_shared_from_this&
+        -:  632:      operator=(const enable_shared_from_this&) noexcept
+        -:  633:      { return *this; }
+        -:  634:
+        -:  635:      ~enable_shared_from_this() { }
+        -:  636:
+        -:  637:    public:
+        -:  638:      shared_ptr<_Tp>
+        -:  639:      shared_from_this()
+        -:  640:      { return shared_ptr<_Tp>(this->_M_weak_this); }
+        -:  641:
+        -:  642:      shared_ptr<const _Tp>
+        -:  643:      shared_from_this() const
+        -:  644:      { return shared_ptr<const _Tp>(this->_M_weak_this); }
+        -:  645:
+        -:  646:#if __cplusplus > 201402L || !defined(__STRICT_ANSI__) // c++1z or gnu++11
+        -:  647:#define __cpp_lib_enable_shared_from_this 201603
+        -:  648:      weak_ptr<_Tp>
+        -:  649:      weak_from_this() noexcept
+        -:  650:      { return this->_M_weak_this; }
+        -:  651:
+        -:  652:      weak_ptr<const _Tp>
+        -:  653:      weak_from_this() const noexcept
+        -:  654:      { return this->_M_weak_this; }
+        -:  655:#endif
+        -:  656:
+        -:  657:    private:
+        -:  658:      template<typename _Tp1>
+        -:  659:	void
+        -:  660:	_M_weak_assign(_Tp1* __p, const __shared_count<>& __n) const noexcept
+        -:  661:	{ _M_weak_this._M_assign(__p, __n); }
+        -:  662:
+        -:  663:      // Found by ADL when this is an associated class.
+        -:  664:      friend const enable_shared_from_this*
+        -:  665:      __enable_shared_from_this_base(const __shared_count<>&,
+        -:  666:				     const enable_shared_from_this* __p)
+        -:  667:      { return __p; }
+        -:  668:
+        -:  669:      template<typename, _Lock_policy>
+        -:  670:	friend class __shared_ptr;
+        -:  671:
+        -:  672:      mutable weak_ptr<_Tp>  _M_weak_this;
+        -:  673:    };
+        -:  674:
+        -:  675:  /**
+        -:  676:   *  @brief  Create an object that is owned by a shared_ptr.
+        -:  677:   *  @param  __a     An allocator.
+        -:  678:   *  @param  __args  Arguments for the @a _Tp object's constructor.
+        -:  679:   *  @return A shared_ptr that owns the newly created object.
+        -:  680:   *  @throw  An exception thrown from @a _Alloc::allocate or from the
+        -:  681:   *          constructor of @a _Tp.
+        -:  682:   *
+        -:  683:   *  A copy of @a __a will be used to allocate memory for the shared_ptr
+        -:  684:   *  and the new object.
+        -:  685:   */
+        -:  686:  template<typename _Tp, typename _Alloc, typename... _Args>
+        -:  687:    inline shared_ptr<_Tp>
+function _ZSt15allocate_sharedIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_12TestRunStatsENS4_INS0_14TestGroupStatsENS4_INS0_13TestCaseStatsENS3_11SectionNodeEEEEEEESaISB_EJRKS5_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE11SectionNodeESaIS4_EJRNS0_12SectionStatsEEESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedINSt8__detail4_NFAINSt7__cxx1112regex_traitsIcEEEESaIS5_EJRKSt6localeRNSt15regex_constants18syntax_option_typeEEESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch5clara6detail13BoundValueRefIdEESaIS4_EJRdEESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch5clara6detail13BoundValueRefIjEESaIS4_EJRjEESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE4_EESaISF_EJRKSE_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE3_EESaISF_EJRKSE_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE2_EESaISF_EJRKSE_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE1_EESaISF_EJRKSE_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE5_EESaISF_EJRKSE_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE0_EESaISF_EJRKSE_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlbE9_EESaIS7_EJRKS6_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE_EESaISF_EJRKSE_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUliE8_EESaIS7_EJRKS6_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE6_EESaISF_EJRKSE_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch17ReporterRegistrarINS0_11XmlReporterEE15ReporterFactoryESaIS4_EJEESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch17ReporterRegistrarINS0_13JunitReporterEE15ReporterFactoryESaIS4_EJEESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_14TestGroupStatsENS4_INS0_13TestCaseStatsENS3_11SectionNodeEEEEESaIS9_EJRKS5_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_13TestCaseStatsENS3_11SectionNodeEEESaIS7_EJRKS5_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch17ReporterRegistrarINS0_15ConsoleReporterEE15ReporterFactoryESaIS4_EJEESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch17ReporterRegistrarINS0_15CompactReporterEE15ReporterFactoryESaIS4_EJEESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch8TestSpec10TagPatternESaIS2_EJRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESA_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch8TestSpec15ExcludedPatternESaIS2_EJRSt10shared_ptrINS1_7PatternEEEES4_IT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch8TestSpec11NamePatternESaIS2_EJRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESA_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch5clara6detail13BoundValueRefISt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaISA_EEEESaISD_EJRSC_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch5clara6detail15BoundFlagLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlbE7_EESaIS7_EJRKS6_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch5clara6detail15BoundFlagLambdaIZNS2_4HelpC4ERbEUlbE_EESaIS7_EJRKS6_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch16TestCaseTracking14SectionTrackerESaIS2_EJRKNS1_15NameAndLocationERNS1_14TrackerContextEPNS1_8ITrackerEEESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch16TestCaseTracking14SectionTrackerESaIS2_EJNS1_15NameAndLocationERNS1_14TrackerContextEDnEESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch6ConfigESaIS1_EJRNS0_10ConfigDataEEESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch10Generators16GeneratorTrackerESaIS2_EJRKNS0_16TestCaseTracking15NameAndLocationERNS4_14TrackerContextEPNS4_8ITrackerEEESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch5clara6detail12BoundFlagRefESaIS3_EJRbEESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedIN5Catch5clara6detail13BoundValueRefINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEESaISA_EJRS9_EESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+function _ZSt15allocate_sharedINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EJRA13_KcEESt10shared_ptrIT_ERKT0_DpOT1_ called 0 returned 0% blocks executed 0%
+    #####:  688:    allocate_shared(const _Alloc& __a, _Args&&... __args)
+        -:  689:    {
+        -:  690:      return shared_ptr<_Tp>(_Sp_make_shared_tag(), __a,
+    #####:  691:			     std::forward<_Args>(__args)...);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+call    8 never executed
+call    9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+call   17 never executed
+call   18 never executed
+branch 19 never executed
+branch 20 never executed
+call   21 never executed
+call   22 never executed
+branch 23 never executed
+branch 24 never executed
+call   25 never executed
+call   26 never executed
+branch 27 never executed
+branch 28 never executed
+call   29 never executed
+call   30 never executed
+branch 31 never executed
+branch 32 never executed
+call   33 never executed
+call   34 never executed
+branch 35 never executed
+branch 36 never executed
+call   37 never executed
+call   38 never executed
+branch 39 never executed
+branch 40 never executed
+call   41 never executed
+call   42 never executed
+branch 43 never executed
+branch 44 never executed
+call   45 never executed
+call   46 never executed
+branch 47 never executed
+branch 48 never executed
+call   49 never executed
+call   50 never executed
+branch 51 never executed
+branch 52 never executed
+call   53 never executed
+call   54 never executed
+branch 55 never executed
+branch 56 never executed
+call   57 never executed
+call   58 never executed
+branch 59 never executed
+branch 60 never executed
+call   61 never executed
+branch 62 never executed
+branch 63 never executed
+call   64 never executed
+branch 65 never executed
+branch 66 never executed
+call   67 never executed
+call   68 never executed
+branch 69 never executed
+branch 70 never executed
+call   71 never executed
+call   72 never executed
+branch 73 never executed
+branch 74 never executed
+call   75 never executed
+branch 76 never executed
+branch 77 never executed
+call   78 never executed
+branch 79 never executed
+branch 80 never executed
+call   81 never executed
+call   82 never executed
+call   83 never executed
+branch 84 never executed
+branch 85 never executed
+call   86 never executed
+call   87 never executed
+branch 88 never executed
+branch 89 never executed
+call   90 never executed
+call   91 never executed
+call   92 never executed
+branch 93 never executed
+branch 94 never executed
+call   95 never executed
+call   96 never executed
+branch 97 never executed
+branch 98 never executed
+call   99 never executed
+call   100 never executed
+branch 101 never executed
+branch 102 never executed
+call   103 never executed
+call   104 never executed
+branch 105 never executed
+branch 106 never executed
+call   107 never executed
+call   108 never executed
+call   109 never executed
+call   110 never executed
+branch 111 never executed
+branch 112 never executed
+call   113 never executed
+call   114 never executed
+call   115 never executed
+call   116 never executed
+branch 117 never executed
+branch 118 never executed
+call   119 never executed
+call   120 never executed
+branch 121 never executed
+branch 122 never executed
+call   123 never executed
+call   124 never executed
+call   125 never executed
+call   126 never executed
+branch 127 never executed
+branch 128 never executed
+call   129 never executed
+call   130 never executed
+branch 131 never executed
+branch 132 never executed
+call   133 never executed
+call   134 never executed
+branch 135 never executed
+branch 136 never executed
+call   137 never executed
+call   138 never executed
+branch 139 never executed
+branch 140 never executed
+        -:  692:    }
+        -:  693:
+        -:  694:  /**
+        -:  695:   *  @brief  Create an object that is owned by a shared_ptr.
+        -:  696:   *  @param  __args  Arguments for the @a _Tp object's constructor.
+        -:  697:   *  @return A shared_ptr that owns the newly created object.
+        -:  698:   *  @throw  std::bad_alloc, or an exception thrown from the
+        -:  699:   *          constructor of @a _Tp.
+        -:  700:   */
+        -:  701:  template<typename _Tp, typename... _Args>
+        -:  702:    inline shared_ptr<_Tp>
+function _ZSt11make_sharedIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_12TestRunStatsENS4_INS0_14TestGroupStatsENS4_INS0_13TestCaseStatsENS3_11SectionNodeEEEEEEEJRKS5_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE11SectionNodeEJRNS0_12SectionStatsEEESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedINSt8__detail4_NFAINSt7__cxx1112regex_traitsIcEEEEJRKSt6localeRNSt15regex_constants18syntax_option_typeEEESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch5clara6detail13BoundValueRefIdEEJRdEESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch5clara6detail13BoundValueRefIjEEJRjEESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE4_EEJRKSE_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE3_EEJRKSE_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE2_EEJRKSE_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE1_EEJRKSE_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE5_EEJRKSE_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE0_EEJRKSE_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlbE9_EEJRKS6_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE_EEJRKSE_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUliE8_EEJRKS6_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch5clara6detail11BoundLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE6_EEJRKSE_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch17ReporterRegistrarINS0_11XmlReporterEE15ReporterFactoryEJEESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch17ReporterRegistrarINS0_13JunitReporterEE15ReporterFactoryEJEESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_14TestGroupStatsENS4_INS0_13TestCaseStatsENS3_11SectionNodeEEEEEJRKS5_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch22CumulativeReporterBaseINS0_13JunitReporterEE4NodeINS0_13TestCaseStatsENS3_11SectionNodeEEEJRKS5_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch17ReporterRegistrarINS0_15ConsoleReporterEE15ReporterFactoryEJEESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch17ReporterRegistrarINS0_15CompactReporterEE15ReporterFactoryEJEESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch8TestSpec10TagPatternEJRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch8TestSpec15ExcludedPatternEJRSt10shared_ptrINS1_7PatternEEEES3_IT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch8TestSpec11NamePatternEJRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch5clara6detail13BoundValueRefISt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaISA_EEEEJRSC_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch5clara6detail15BoundFlagLambdaIZNS0_21makeCommandLineParserERNS0_10ConfigDataEEUlbE7_EEJRKS6_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch5clara6detail15BoundFlagLambdaIZNS2_4HelpC4ERbEUlbE_EEJRKS6_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch16TestCaseTracking14SectionTrackerEJRKNS1_15NameAndLocationERNS1_14TrackerContextEPNS1_8ITrackerEEESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch16TestCaseTracking14SectionTrackerEJNS1_15NameAndLocationERNS1_14TrackerContextEDnEESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch6ConfigEJRNS0_10ConfigDataEEESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch10Generators16GeneratorTrackerEJRKNS0_16TestCaseTracking15NameAndLocationERNS3_14TrackerContextEPNS3_8ITrackerEEESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch5clara6detail12BoundFlagRefEJRbEESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedIN5Catch5clara6detail13BoundValueRefINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEJRS9_EESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+function _ZSt11make_sharedINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEJRA13_KcEESt10shared_ptrIT_EDpOT0_ called 0 returned 0% blocks executed 0%
+    #####:  703:    make_shared(_Args&&... __args)
+        -:  704:    {
+        -:  705:      typedef typename std::remove_const<_Tp>::type _Tp_nc;
+        -:  706:      return std::allocate_shared<_Tp>(std::allocator<_Tp_nc>(),
+    #####:  707:				       std::forward<_Args>(__args)...);
+call    0 never executed
+call    1 never executed
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+call   12 never executed
+call   13 never executed
+call   14 never executed
+call   15 never executed
+call   16 never executed
+call   17 never executed
+branch 18 never executed
+branch 19 never executed
+call   20 never executed
+call   21 never executed
+call   22 never executed
+call   23 never executed
+call   24 never executed
+branch 25 never executed
+branch 26 never executed
+call   27 never executed
+call   28 never executed
+call   29 never executed
+call   30 never executed
+call   31 never executed
+branch 32 never executed
+branch 33 never executed
+call   34 never executed
+call   35 never executed
+call   36 never executed
+call   37 never executed
+call   38 never executed
+branch 39 never executed
+branch 40 never executed
+call   41 never executed
+call   42 never executed
+call   43 never executed
+call   44 never executed
+call   45 never executed
+branch 46 never executed
+branch 47 never executed
+call   48 never executed
+call   49 never executed
+call   50 never executed
+call   51 never executed
+call   52 never executed
+branch 53 never executed
+branch 54 never executed
+call   55 never executed
+call   56 never executed
+call   57 never executed
+call   58 never executed
+call   59 never executed
+branch 60 never executed
+branch 61 never executed
+call   62 never executed
+call   63 never executed
+call   64 never executed
+call   65 never executed
+call   66 never executed
+branch 67 never executed
+branch 68 never executed
+call   69 never executed
+call   70 never executed
+call   71 never executed
+call   72 never executed
+call   73 never executed
+branch 74 never executed
+branch 75 never executed
+call   76 never executed
+call   77 never executed
+call   78 never executed
+call   79 never executed
+call   80 never executed
+branch 81 never executed
+branch 82 never executed
+call   83 never executed
+call   84 never executed
+call   85 never executed
+call   86 never executed
+call   87 never executed
+branch 88 never executed
+branch 89 never executed
+call   90 never executed
+call   91 never executed
+call   92 never executed
+call   93 never executed
+call   94 never executed
+branch 95 never executed
+branch 96 never executed
+call   97 never executed
+call   98 never executed
+call   99 never executed
+call   100 never executed
+call   101 never executed
+branch 102 never executed
+branch 103 never executed
+call   104 never executed
+call   105 never executed
+call   106 never executed
+call   107 never executed
+branch 108 never executed
+branch 109 never executed
+call   110 never executed
+call   111 never executed
+call   112 never executed
+call   113 never executed
+branch 114 never executed
+branch 115 never executed
+call   116 never executed
+call   117 never executed
+call   118 never executed
+call   119 never executed
+call   120 never executed
+branch 121 never executed
+branch 122 never executed
+call   123 never executed
+call   124 never executed
+call   125 never executed
+call   126 never executed
+call   127 never executed
+branch 128 never executed
+branch 129 never executed
+call   130 never executed
+call   131 never executed
+call   132 never executed
+call   133 never executed
+branch 134 never executed
+branch 135 never executed
+call   136 never executed
+call   137 never executed
+call   138 never executed
+call   139 never executed
+branch 140 never executed
+branch 141 never executed
+call   142 never executed
+call   143 never executed
+call   144 never executed
+call   145 never executed
+call   146 never executed
+call   147 never executed
+branch 148 never executed
+branch 149 never executed
+call   150 never executed
+call   151 never executed
+call   152 never executed
+call   153 never executed
+call   154 never executed
+branch 155 never executed
+branch 156 never executed
+call   157 never executed
+call   158 never executed
+call   159 never executed
+call   160 never executed
+call   161 never executed
+call   162 never executed
+branch 163 never executed
+branch 164 never executed
+call   165 never executed
+call   166 never executed
+call   167 never executed
+call   168 never executed
+call   169 never executed
+branch 170 never executed
+branch 171 never executed
+call   172 never executed
+call   173 never executed
+call   174 never executed
+call   175 never executed
+call   176 never executed
+branch 177 never executed
+branch 178 never executed
+call   179 never executed
+call   180 never executed
+call   181 never executed
+call   182 never executed
+call   183 never executed
+branch 184 never executed
+branch 185 never executed
+call   186 never executed
+call   187 never executed
+call   188 never executed
+call   189 never executed
+call   190 never executed
+call   191 never executed
+call   192 never executed
+branch 193 never executed
+branch 194 never executed
+call   195 never executed
+call   196 never executed
+call   197 never executed
+call   198 never executed
+call   199 never executed
+call   200 never executed
+call   201 never executed
+branch 202 never executed
+branch 203 never executed
+call   204 never executed
+call   205 never executed
+call   206 never executed
+call   207 never executed
+call   208 never executed
+branch 209 never executed
+branch 210 never executed
+call   211 never executed
+call   212 never executed
+call   213 never executed
+call   214 never executed
+call   215 never executed
+call   216 never executed
+call   217 never executed
+branch 218 never executed
+branch 219 never executed
+call   220 never executed
+call   221 never executed
+call   222 never executed
+call   223 never executed
+call   224 never executed
+branch 225 never executed
+branch 226 never executed
+call   227 never executed
+call   228 never executed
+call   229 never executed
+call   230 never executed
+call   231 never executed
+branch 232 never executed
+branch 233 never executed
+call   234 never executed
+call   235 never executed
+call   236 never executed
+call   237 never executed
+call   238 never executed
+branch 239 never executed
+branch 240 never executed
+call   241 never executed
+call   242 never executed
+        -:  708:    }
+        -:  709:
+        -:  710:  /// std::hash specialization for shared_ptr.
+        -:  711:  template<typename _Tp>
+        -:  712:    struct hash<shared_ptr<_Tp>>
+        -:  713:    : public __hash_base<size_t, shared_ptr<_Tp>>
+        -:  714:    {
+        -:  715:      size_t
+        -:  716:      operator()(const shared_ptr<_Tp>& __s) const noexcept
+        -:  717:      {
+        -:  718:	return std::hash<typename shared_ptr<_Tp>::element_type*>()(__s.get());
+        -:  719:      }
+        -:  720:    };
+        -:  721:
+        -:  722:  // @} group pointer_abstractions
+        -:  723:
+        -:  724:_GLIBCXX_END_NAMESPACE_VERSION
+        -:  725:} // namespace
+        -:  726:
+        -:  727:#endif // _SHARED_PTR_H

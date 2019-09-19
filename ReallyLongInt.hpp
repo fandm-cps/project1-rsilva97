@@ -21,7 +21,6 @@ class ReallyLongInt{
 
         bool equal(const ReallyLongInt& other) const;
         bool greater(const ReallyLongInt& other) const;
-        unsigned int getSize() const;
         string toString() const;
         string toStringBinary() const;
 
