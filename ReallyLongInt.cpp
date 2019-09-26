@@ -165,8 +165,8 @@ bool ReallyLongInt::absGreater(const ReallyLongInt& other) const{
     }
     
     if(size == other.size){
-        reverse(digits->begin(), digits->end());
-        reverse(other.digits->begin(), other.digits->end());
+        //reverse(digits->begin(), digits->end());
+        //reverse(other.digits->begin(), other.digits->end());
 
         for(long long i = 0; i < size; ++i){
             if((*digits)[i] != (*other.digits)[i]){
@@ -267,44 +267,47 @@ ReallyLongInt ReallyLongInt::absAdd(const ReallyLongInt& other) const{
 }
 
 ReallyLongInt ReallyLongInt::add(const ReallyLongInt& other) const{
+    ReallyLongInt result;
+
     if(!isNeg && !other.isNeg){
         return this->absAdd(other);
     }
     else if(isNeg && other.isNeg){
-        ReallyLongInt result = this->absAdd(other);
-        result.isNeg = true;
+        result = this->absAdd(other);
+        result.flipSign();
         return result;
     }
-    else if(isNeg && !other.isNeg){
-        return other.sub(*this);
+    else if(!isNeg && other.isNeg){
+        if(!this->absGreater(other)){
+            result = this->absSub(other);
+            return result;
+        }
+        return this->absSub(other);
     }
-    return this->sub(other);
+    result = this->absSub(other);
+    result.flipSign();
+    return result;
 }
 
 void ReallyLongInt::flipSign(){
-
+    if(size == 1 && !(*digits)[0]){
+        isNeg = false;
+    }
+    else{
+        isNeg = (isNeg)? false : true;
+    }
 }
 
 ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
     vector<bool> total(std::max(size, other.size), isNeg), *top, *bottom;
-    long long i, j, k, partial, index;
+    long long i, j, k, partial = 0, index;
     ReallyLongInt result;
     result.size = std::max(size, other.size);
     result.isNeg = false;
 
-    for(int z = 0; z<size;z++){
-            cout<<(*digits)[z]<<" ";
-        }
-        cout<<endl;
-    for(int u = 0; u<other.size;u++){
-            cout<<(*other.digits)[u]<<" ";
-        }
-        cout<<endl;
-
     if(*digits == *(other.digits)){
-        cout<<"in here"<<endl;
         return result;
-    }
+    }   
 
     if(size < other.size){
         top = other.digits;
@@ -312,7 +315,6 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
         i = other.size - 1;
         j = size - 1;
         result.isNeg = true;
-        cout<<"A"<<endl;
     }
     else if(size > other.size){
         top = digits;
@@ -320,15 +322,13 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
         
         i = size - 1;
         j = other.size - 1;
-        cout<<"B"<<endl;
     }
     else{
-        if(this->absGreater(other)){
+        if((this->absGreater(other))){
             top = digits;
             bottom = other.digits;
             i = size - 1;
             j = other.size - 1;
-            cout<<"C"<<endl;
         }
         else{
             top = other.digits;
@@ -336,17 +336,12 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
             i = other.size - 1;
             j = size - 1;
             result.isNeg = true;
-            cout<<"D"<<endl;
         }
     }
-
-    
 
     k = std::max(i,j);
 
     while(k >= 0 && (i >= 0 || j >= 0)){
-
-        //cout << "i, j, k: " << i << " " << j << " " << k << endl;
 
         if(i >= 0){
             partial += ((*top)[i])? 1 : 0;
@@ -372,7 +367,6 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
             }
         }
 
-        //cout << "hi" << endl;
         if(partial == 0){
             (total)[k] = false;
         }
@@ -380,7 +374,6 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
             (total)[k] = true;
         }
         partial = 0;
-        //cout << "hello" <<endl;
 
         i--;
         j--;
@@ -394,5 +387,58 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
 }
 
 ReallyLongInt ReallyLongInt::sub(const ReallyLongInt& other) const{
+    ReallyLongInt result;
+    
+    if(isNeg && !other.isNeg){
+        result = this->absAdd(other);
+        result.flipSign();
+        return result;
+    }
+    else if(!isNeg && other.isNeg){
+        return this->absAdd(other);
+    }
+    else if(!isNeg && !other.isNeg){
+        return this->absSub(other);
+    }
+    else{
+        result = this->absAdd(other);
+        result.flipSign();
+        return result;
+    }
+
+}
+
+ReallyLongInt ReallyLongInt::operator-() const{
+    ReallyLongInt result = *this;
+    result.flipSign();
+    return result;
+}
+
+ReallyLongInt operator+(const ReallyLongInt& x, const ReallyLongInt& y){
+    return x.add(y);
+}
+
+ReallyLongInt operator-(const ReallyLongInt& x, const ReallyLongInt& y){
+    return x.sub(y);
+}
+
+ReallyLongInt ReallyLongInt::absMult(const ReallyLongInt& other) const{
     
 }
+
+/*Checkpoint 1:  3/3
+
+--makefile--
+- Include .hpp in .o dependency
+- Include catch.hpp in test files dependencies
+- Need tests rule
+
+--ReallyLongInt_TEST.cpp--
+- Fails coverage test
+
+--ReallyLongInt.cpp--
+- In your long long and string constructors, consider when the 
+input is 0
+- In absGreater(), dereference your pointers before comparison
+- In greater(), consider the case when both numbers are negative 
+and the same*/

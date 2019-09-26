@@ -103,9 +103,6 @@ TEST_CASE("Testing ReallyLongInt Class"){
 
     }
     //Checkpoint 2
-    SECTION("removeLeadingZeros"){
-
-    }
     
     SECTION("operator="){
         ReallyLongInt test_rli(10);
@@ -113,8 +110,6 @@ TEST_CASE("Testing ReallyLongInt Class"){
 
         REQUIRE(test_another.toString() == "10");
         REQUIRE(test_rli.toString() == "10");
-
-
     }
 
     SECTION("absAdd"){
@@ -133,14 +128,48 @@ TEST_CASE("Testing ReallyLongInt Class"){
 
         ReallyLongInt test_rli(10);
         ReallyLongInt test_another(5);
-        ReallyLongInt test_otherPos(13);
 
         REQUIRE(test_rli.absSub(test_another).toString() == "5");
         REQUIRE(test_rli.absSub(test_rli).toString() == "0");
-        REQUIRE(test_another.absSub(test_rli).toString() == "-5");
-        //REQUIRE(test_otherPos.absSub(test_rli).toString() == "-7");
-        //REQUIRE(test_rli.absSub(test_otherPos).toString() == "-3");
         
+        ReallyLongInt test_rli1(6);
+        ReallyLongInt test_another1(10);
+        
+        REQUIRE(test_rli1.absSub(test_another1).toString() == "-4");
+        
+        ReallyLongInt test_rli2(13);
+        ReallyLongInt test_another2(10);
+        ReallyLongInt test_rli4(9);
+        ReallyLongInt test_another4(3);
+        
+        REQUIRE(test_rli2.absSub(test_another2).toString() == "3");
+        REQUIRE(test_rli4.absSub(test_another4).toString() == "6");
+        
+        ReallyLongInt test_rli3(9);
+        ReallyLongInt test_another3(15);
+
+        REQUIRE(test_rli3.absSub(test_another3).toString() == "-6");
+    }
+
+    SECTION("add"){
+        ReallyLongInt test_pos(25);
+        ReallyLongInt test_neg("-12");
+        ReallyLongInt test_oPos(10);
+        ReallyLongInt test_oNeg(-6);
+
+        REQUIRE(test_pos.add(test_pos).toString() == "50");
+        REQUIRE(test_neg.add(test_neg).toString() == "-24");
+        REQUIRE(test_neg.add(test_pos).toString() == "13");
+        REQUIRE(test_neg.add(test_oPos).toString() == "-2");
+        REQUIRE(test_oPos.add(test_oNeg).toString() == "4");
+
+        ReallyLongInt test_neg1("-12");
+        ReallyLongInt test_oPos1(10);
+
+        REQUIRE(test_oPos1.add(test_neg1).toString() == "-2");
+    }
+
+    SECTION("sub"){
 
     }
 

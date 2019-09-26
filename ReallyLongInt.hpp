@@ -26,6 +26,9 @@ class ReallyLongInt{
         //Checkpoint 2
         void removeLeadingZeros(void);
         ReallyLongInt& operator=(const ReallyLongInt& other);
+        ReallyLongInt operator-() const;
+        //ReallyLongInt operator+(const ReallyLongInt& x, const ReallyLongInt& y);
+        //ReallyLongInt operator-(const ReallyLongInt& x, const ReallyLongInt& y);
         ReallyLongInt absAdd(const ReallyLongInt& other) const;
         ReallyLongInt add(const ReallyLongInt& other) const;
         ReallyLongInt absSub(const ReallyLongInt& other) const;
@@ -40,6 +43,7 @@ class ReallyLongInt{
         //Checkpoint 2
         void swap(ReallyLongInt other);
         void flipSign();
+        ReallyLongInt absMult(const ReallyLongInt& other) const;
 };
 
 #endif
