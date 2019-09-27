@@ -203,4 +203,13 @@ TEST_CASE("Testing ReallyLongInt Class"){
 
     }
 
+    SECTION("div"){
+        ReallyLongInt test_divQuot, test_divRem, test_pos(4), test_neg(-3), test_oPos(2), test_oNeg(-9);
+        
+        test_pos.div(test_oPos, test_divQuot, test_divRem);
+
+        REQUIRE(test_divRem.toString() == "0");
+        REQUIRE(test_divQuot.toString() == "0");
+    }
+
 }
