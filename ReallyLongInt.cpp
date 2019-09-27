@@ -8,34 +8,41 @@ ReallyLongInt::ReallyLongInt(){
 
 ReallyLongInt::ReallyLongInt(long long num){
     
-    if(num < 0){
-        isNeg = true;
-        num = num*(-1);
+    if(num == 0){
+        isNeg = false;
+        digits = new vector<bool>(1,false);
+        size = 1;
     }
     else{
-        isNeg = false;
-    }
-
-    size = log2(num)+1;
-    digits = new vector<bool>(size, isNeg); 
-
-    long long i = num;
-    long long index = 0;
-
-    while(i > 0){
-
-        if(i%2 == 1){
-            (*digits)[index] = true;
+        if(num < 0){
+            isNeg = true;
+            num = num*(-1);
         }
         else{
-            (*digits)[index] =false;
+            isNeg = false;
         }
 
-        i = i/2;   
-        ++index;  
-    }
+        size = log2(num)+1;
+        digits = new vector<bool>(size, isNeg); 
 
-    reverse(digits->begin(), digits->end());
+        long long i = num;
+        long long index = 0;
+
+        while(i > 0){
+
+            if(i%2 == 1){
+                (*digits)[index] = true;
+            }
+            else{
+                (*digits)[index] =false;
+            }
+
+            i = i/2;   
+            ++index;  
+        }
+
+        reverse(digits->begin(), digits->end());
+    }
 }
 
 ReallyLongInt::ReallyLongInt(const string& numStr){
@@ -401,9 +408,11 @@ ReallyLongInt ReallyLongInt::sub(const ReallyLongInt& other) const{
         return this->absSub(other);
     }
     else{
-        result = this->absAdd(other);
-        result.flipSign();
-        return result;
+        
+            result = this->absSub(other);
+            result.flipSign();
+            return result;
+       
     }
 
 }
@@ -423,22 +432,77 @@ ReallyLongInt operator-(const ReallyLongInt& x, const ReallyLongInt& y){
 }
 
 ReallyLongInt ReallyLongInt::absMult(const ReallyLongInt& other) const{
-    
+    //cout<<"Entering absMult."<<endl;
+    ReallyLongInt result;
+    result.isNeg = false;
+    result.size = size + other.size;
+    vector<bool> *top, *bottom, total((size + other.size), false);
+    long long topSize = 0, botSize = 0, index = 0, sumIndex = 0, k = 0;
+
+    if((size == 1 && !(*digits)[0]) || (other.size == 1 && !(*other.digits)[0])){
+        result.size = 1;
+        return result;
+    } 
+
+    if(size > other.size || size == other.size){
+        top = digits;
+        bottom = other.digits;
+        topSize = size;
+        botSize = other.size;
+        //cout<<"A"<<endl;
+    }
+    else{
+        top = other.digits;
+        bottom = digits;
+        topSize = other.size;
+        botSize = size;
+        //cout<<"B"<<endl;
+    }
+    index = topSize + botSize - 1;
+    sumIndex = index;
+
+    for(long long i = botSize-1; i >= 0; i--){
+        //cout<<"First loop iteration at index "<<i<<endl;
+        if((*bottom)[i]){   
+            for(long long j = topSize-1; j >= 0; j--){
+                //cout<<"Second loop iteration at index "<<j<<endl;
+                if((*top)[j] && (*bottom)[i]){
+                    if((total)[sumIndex]){
+                        //cout<<"here"<<endl;
+                        do{
+                            (total)[sumIndex-k] = false;
+                            k++;
+                        }while((sumIndex-k >= 0) && (total)[sumIndex-k]);
+                        (total)[sumIndex-k] = true;
+                        k = 0;
+                    }
+                    else{
+                        (total)[sumIndex] = true;
+                    }
+                }
+
+                sumIndex--;
+            }
+        }
+        index--;
+        sumIndex = index;
+    }
+
+    *result.digits = total;
+    result.removeLeadingZeros();
+    return result;
 }
 
-/*Checkpoint 1:  3/3
+ReallyLongInt ReallyLongInt::mult(const ReallyLongInt& other) const{ 
+    if((isNeg && other.isNeg) || (!isNeg && !other.isNeg)){
+        return this->absMult(other);
+    }
+    ReallyLongInt result = this->absMult(other);
+    result.flipSign();
+    return result;
 
---makefile--
-- Include .hpp in .o dependency
-- Include catch.hpp in test files dependencies
-- Need tests rule
+}
 
---ReallyLongInt_TEST.cpp--
-- Fails coverage test
-
---ReallyLongInt.cpp--
-- In your long long and string constructors, consider when the 
-input is 0
-- In absGreater(), dereference your pointers before comparison
-- In greater(), consider the case when both numbers are negative 
-and the same*/
+ReallyLongInt operator*(const ReallyLongInt& x, const ReallyLongInt& y){
+    return x.mult(y);
+}

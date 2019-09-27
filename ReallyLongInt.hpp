@@ -27,12 +27,11 @@ class ReallyLongInt{
         void removeLeadingZeros(void);
         ReallyLongInt& operator=(const ReallyLongInt& other);
         ReallyLongInt operator-() const;
-        //ReallyLongInt operator+(const ReallyLongInt& x, const ReallyLongInt& y);
-        //ReallyLongInt operator-(const ReallyLongInt& x, const ReallyLongInt& y);
         ReallyLongInt absAdd(const ReallyLongInt& other) const;
         ReallyLongInt add(const ReallyLongInt& other) const;
         ReallyLongInt absSub(const ReallyLongInt& other) const;
         ReallyLongInt sub(const ReallyLongInt& other) const;
+        ReallyLongInt mult(const ReallyLongInt& other) const;
 
     private:
         vector<bool> *digits; //the binary digits
