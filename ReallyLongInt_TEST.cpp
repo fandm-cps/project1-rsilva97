@@ -130,7 +130,7 @@ TEST_CASE("Testing ReallyLongInt Class"){
 
     SECTION("absSub"){
 
-        ReallyLongInt test_rli(10), test_another(5);
+        ReallyLongInt test_rli(10), test_another(5), test_test(6);
 
         REQUIRE(test_rli.absSub(test_another).toString() == "5");
         REQUIRE(test_rli.absSub(test_rli).toString() == "0");
@@ -147,6 +147,7 @@ TEST_CASE("Testing ReallyLongInt Class"){
         ReallyLongInt test_rli3(9), test_another3(15);
 
         REQUIRE(test_rli3.absSub(test_another3).toString() == "-6");
+        REQUIRE(test_rli.absSub(test_test).toString() == "4");
     }
 
     SECTION("add"){
@@ -161,6 +162,10 @@ TEST_CASE("Testing ReallyLongInt Class"){
         ReallyLongInt test_neg1("-12"), test_oPos1(10);
 
         REQUIRE(test_oPos1.add(test_neg1).toString() == "-2");
+
+        ReallyLongInt test_neg2(-8), test_oPos2(6);
+        ReallyLongInt test_add = test_neg2 + test_oPos2;
+        REQUIRE(test_add.toString() == "-2");
     }
 
     SECTION("sub"){
@@ -174,6 +179,9 @@ TEST_CASE("Testing ReallyLongInt Class"){
         ReallyLongInt test_pos1(7), test_oPos1(4), test_neg1(-8), test_oNeg1(-10);
         REQUIRE(test_pos1.sub(test_oPos1).toString() == "3");
         REQUIRE(test_neg1.sub(test_oNeg1).toString() == "2");
+
+        ReallyLongInt test_pos2(15), test_neg2(4), test_sub = test_pos2 - test_neg2;
+        REQUIRE(test_sub.toString() == "11"); 
     }
 
     SECTION("mult"){
@@ -189,6 +197,9 @@ TEST_CASE("Testing ReallyLongInt Class"){
         REQUIRE(test_neg.mult(test_neg1).toString() == "16");
         REQUIRE(test_neg1.mult(test_neg).toString() == "16");
         REQUIRE(test_neg.mult(test_neg).toString() == "64");
+        
+        ReallyLongInt test_mult = test_pos * test_neg;
+        REQUIRE(test_mult.toString() == "-24");
 
     }
 

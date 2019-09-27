@@ -285,12 +285,9 @@ ReallyLongInt ReallyLongInt::add(const ReallyLongInt& other) const{
         return result;
     }
     else if(!isNeg && other.isNeg){
-        if(!this->absGreater(other)){
-            result = this->absSub(other);
-            return result;
-        }
         return this->absSub(other);
     }
+    
     result = this->absSub(other);
     result.flipSign();
     return result;
@@ -345,29 +342,40 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
             result.isNeg = true;
         }
     }
+    vector<bool> topCopy(i+1, isNeg);
+    for(long long z = 0; z < i+1; z++){
+        (topCopy)[z] = (*top)[z];
+    }
+
+    /*for(long long z = 0; z < i+1; z++){
+        cout << (topCopy)[z] << " ";
+    }
+    cout << endl;*/
+
+    long long pi = i;
 
     k = std::max(i,j);
 
     while(k >= 0 && (i >= 0 || j >= 0)){
 
         if(i >= 0){
-            partial += ((*top)[i])? 1 : 0;
+            partial += ((topCopy)[i])? 1 : 0;
         }
         if(j >= 0){
             partial -= ((*bottom)[j])? 1 : 0;
         }
 
         if(i>=0 && j>=0){
-            if(!(*top)[i] && (*bottom)[j]){
+            if(!(topCopy)[i] && (*bottom)[j]){
                 index = i;
                 while(index >= 0){
                     index--;
-                    if((*top)[index]){
-                       (*top)[index] = false;
+                    if((topCopy)[index]){
+                       (topCopy)[index] = false;
                        break;
                     }
                     else{
-                     (*top)[index] = true;
+                     (topCopy)[index] = true;
                     }
                 }
                 (total)[k] = true;
@@ -386,6 +394,18 @@ ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
         j--;
         k--;
     }
+
+    /*cout << "topCopy: ";
+    for(long long z = 0; z < pi+1; z++){
+        cout << (topCopy)[z] << " ";
+    }
+    cout << endl;
+
+    cout << "top: ";
+    for(long long z = 0; z < pi+1; z++){
+        cout << (*top)[z] << " ";
+    }
+    cout << endl;*/
 
     *result.digits = total;
     result.removeLeadingZeros();    
@@ -506,3 +526,19 @@ ReallyLongInt ReallyLongInt::mult(const ReallyLongInt& other) const{
 ReallyLongInt operator*(const ReallyLongInt& x, const ReallyLongInt& y){
     return x.mult(y);
 }
+
+void ReallyLongInt::absDiv(const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const{
+
+}
+
+/*void ReallyLongInt::div(const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const{
+
+}
+
+ReallyLongInt operator/(const ReallyLongInt& x, const ReallyLongInt& y){
+    return x.div(y);
+}
+
+ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y){
+    return x.mult(y);
+}*/

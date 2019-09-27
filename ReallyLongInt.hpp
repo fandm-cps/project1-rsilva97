@@ -32,6 +32,12 @@ class ReallyLongInt{
         ReallyLongInt absSub(const ReallyLongInt& other) const;
         ReallyLongInt sub(const ReallyLongInt& other) const;
         ReallyLongInt mult(const ReallyLongInt& other) const;
+        void div(const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const;
+        friend ReallyLongInt operator+(const ReallyLongInt& x, const ReallyLongInt& y);
+        friend ReallyLongInt operator-(const ReallyLongInt& x, const ReallyLongInt& y);
+        friend ReallyLongInt operator*(const ReallyLongInt& x, const ReallyLongInt& y);
+        friend ReallyLongInt operator/(const ReallyLongInt& x, const ReallyLongInt& y);
+        friend ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y);
 
     private:
         vector<bool> *digits; //the binary digits
@@ -43,6 +49,7 @@ class ReallyLongInt{
         void swap(ReallyLongInt other);
         void flipSign();
         ReallyLongInt absMult(const ReallyLongInt& other) const;
+        void absDiv(const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const;
 };
 
 #endif
