@@ -240,7 +240,7 @@ ReallyLongInt ReallyLongInt::absAdd(const ReallyLongInt& other) const{
         return *this;
     }
 
-    vector<bool> total((std::max(size, other.size)+1), isNeg);
+    vector<bool> total((std::max(size, other.size)+1), false);
     long long i = size - 1;
     long long j = other.size - 1;
     long long k = std::max(size, other.size);
@@ -427,11 +427,20 @@ ReallyLongInt ReallyLongInt::sub(const ReallyLongInt& other) const{
     ReallyLongInt result;
     
     if(isNeg && !other.isNeg){
+        if(!other.isNeg && !(*other.digits)[0]){
+            return this->absAdd(other);
+        }
+
         result = this->absAdd(other);
         result.flipSign();
         return result;
     }
     else if(!isNeg && other.isNeg){
+        if(size == 1 && !(*digits)[0]){
+            result = this->absAdd(other);
+            result.flipSign();
+            return result;
+        }
         return this->absAdd(other);
     }
     else if(!isNeg && !other.isNeg){
@@ -499,8 +508,7 @@ ReallyLongInt ReallyLongInt::absMult(const ReallyLongInt& other) const{
                 if((*top)[j] && (*bottom)[i]){
                     if((total)[sumIndex]){
                         //cout<<"here"<<endl;
-                        do{
-                            (total)[sumIndex-k] = false;
+                        do{ (total)[sumIndex-k] = false;
                             k++;
                         }while((sumIndex-k >= 0) && (total)[sumIndex-k]);
                         (total)[sumIndex-k] = true;
