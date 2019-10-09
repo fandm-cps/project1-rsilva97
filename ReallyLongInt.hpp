@@ -38,6 +38,9 @@ class ReallyLongInt{
         friend ReallyLongInt operator*(const ReallyLongInt& x, const ReallyLongInt& y);
         friend ReallyLongInt operator/(const ReallyLongInt& x, const ReallyLongInt& y);
         friend ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y);
+        //Checkpoint 3
+        ReallyLongInt exp(const ReallyLongInt e );
+        bool isPrime();
 
     private:
         vector<bool> *digits; //the binary digits
@@ -50,6 +53,9 @@ class ReallyLongInt{
         void flipSign();
         ReallyLongInt absMult(const ReallyLongInt& other) const;
         void absDiv(const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const;
+        //Checkpoint 3
+        
+
 };
 
 #endif

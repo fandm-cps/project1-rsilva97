@@ -73,22 +73,6 @@ TEST_CASE("Testing ReallyLongInt Class"){
         REQUIRE(test_pos.equal(test_zero) == false);
         REQUIRE(test_pos.equal(test_neg) == false);
         REQUIRE(test_other.equal(test_oPos) == false);
-        
-
-        /*ReallyLongInt test_rli;
-        ReallyLongInt test_rliNeg(-9);
-        ReallyLongInt test_rliPos("8");
-        ReallyLongInt test_otherNeg("-9");
-        ReallyLongInt test_otherPos(test_rliPos);
-        ReallyLongInt test_another(9);
-
-        REQUIRE(test_rliNeg.equal(test_rliPos) == false);
-        REQUIRE(test_rliPos.equal(test_otherPos) == true);
-        REQUIRE(test_otherPos.equal(test_rliPos) == true);
-        REQUIRE(test_otherNeg.equal(test_rliNeg) == true);
-        REQUIRE(test_rliNeg.equal(test_rliPos) == false);
-        REQUIRE(test_rliPos.equal(test_rliPos) == true);
-        REQUIRE(test_rliPos.equal(test_another) == false);*/
 
     }
 
@@ -108,29 +92,6 @@ TEST_CASE("Testing ReallyLongInt Class"){
         REQUIRE(oNeg.greater(neg) == false);
         REQUIRE(pos.greater(oPos) == false);
         REQUIRE(another.greater(pos) == false);
-        
-
-        /*ReallyLongInt test_rli;
-        ReallyLongInt test_rliNeg(-9);
-        ReallyLongInt test_rliPos("8");
-        ReallyLongInt test_otherNeg(test_rliNeg);
-        ReallyLongInt test_otherPos(test_rliPos);
-        ReallyLongInt test_another(256);
-        ReallyLongInt test_another1(9);
-        ReallyLongInt test_another2(4);
-
-        REQUIRE(test_otherNeg.greater(test_rli) == false);
-        REQUIRE(test_otherPos.greater(test_rliPos) == false);
-        REQUIRE(test_otherPos.greater(test_otherNeg) == true);
-        REQUIRE(test_rliPos.greater(test_rliNeg) == true);
-        REQUIRE(test_rliPos.greater(test_otherPos) == false);
-        REQUIRE(test_rliNeg.greater(test_otherNeg) == true); 
-        REQUIRE(test_rliNeg.greater(test_otherNeg) == true);
-        REQUIRE(test_rliPos.greater(test_otherNeg) == true);
-        REQUIRE(test_another.greater(test_rliPos) == true);
-        REQUIRE(test_another1.greater(test_rliPos) == true);
-        REQUIRE(test_rliPos.greater(test_another1) == false);
-        REQUIRE(test_another2.greater(test_rliPos) == false);*/
 
     }
     //Checkpoint 2
@@ -156,20 +117,11 @@ TEST_CASE("Testing ReallyLongInt Class"){
         REQUIRE(pos.absAdd(oNeg).toString() == "13");
         REQUIRE(neg.absAdd(oPos).toString() == "461");
 
-
-        /*ReallyLongInt test_rli(5);
-        ReallyLongInt test_another(6);
-        ReallyLongInt test_rliNeg(-10);
-
-        REQUIRE(test_rli.absAdd(test_another).toString() == "11");
-        REQUIRE(test_another.absAdd(test_rliNeg).toString() == "16");
-        REQUIRE(test_rliNeg.absAdd(test_rliNeg).toString() == "20");*/
-
     }
 
     SECTION("absSub"){
 
-        ReallyLongInt zero, sPos(5), bPos(8), sNeg(-5), bNeg(-9);
+        ReallyLongInt zero, sPos(5), bPos(8), sNeg(-5), bNeg(-9), two(2), one(1);
 
         REQUIRE(zero.absSub(zero).toString() == "0");
         REQUIRE(zero.absSub(sPos).toString() == "-5");
@@ -190,24 +142,6 @@ TEST_CASE("Testing ReallyLongInt Class"){
         REQUIRE(bNeg.absSub(bPos).toString() == "1");
         REQUIRE(bPos.absSub(bNeg).toString() == "-1");
         
-        /*ReallyLongInt test_rli(10), test_another(5), test_test(6);
-
-        REQUIRE(test_rli.absSub(test_another).toString() == "5");
-        REQUIRE(test_rli.absSub(test_rli).toString() == "0");
-        
-        ReallyLongInt test_rli1(6), test_another1(10);
-        
-        REQUIRE(test_rli1.absSub(test_another1).toString() == "-4");
-        
-        ReallyLongInt test_rli2(13), test_another2(10), test_rli4(9), test_another4(3);
-        
-        REQUIRE(test_rli2.absSub(test_another2).toString() == "3");
-        REQUIRE(test_rli4.absSub(test_another4).toString() == "6");
-        
-        ReallyLongInt test_rli3(9), test_another3(15);
-
-        REQUIRE(test_rli3.absSub(test_another3).toString() == "-6");
-        REQUIRE(test_rli.absSub(test_test).toString() == "4");*/
     }
 
     SECTION("operator-"){
@@ -230,21 +164,6 @@ TEST_CASE("Testing ReallyLongInt Class"){
         REQUIRE(oNeg.add(oPos).toString() == "-2");
         REQUIRE(total.toString() == "-4");
 
-        /*ReallyLongInt test_pos(25), test_neg("-12"), test_oPos(10), test_oNeg(-6);
-
-        REQUIRE(test_pos.add(test_pos).toString() == "50");
-        REQUIRE(test_neg.add(test_neg).toString() == "-24");
-        REQUIRE(test_neg.add(test_pos).toString() == "13");
-        REQUIRE(test_neg.add(test_oPos).toString() == "-2");
-        REQUIRE(test_oPos.add(test_oNeg).toString() == "4");
-
-        ReallyLongInt test_neg1("-12"), test_oPos1(10);
-
-        REQUIRE(test_oPos1.add(test_neg1).toString() == "-2");
-
-        ReallyLongInt test_neg2(-8), test_oPos2(6);
-        ReallyLongInt test_add = test_neg2 + test_oPos2;
-        REQUIRE(test_add.toString() == "-2");*/
     }
 
     SECTION("sub"){
@@ -268,19 +187,6 @@ TEST_CASE("Testing ReallyLongInt Class"){
         REQUIRE(sNeg.sub(sPos).toString() == "-10");
         REQUIRE(total.toString() == "13");
         
-        /*ReallyLongInt test_pos(25), test_neg("-12"), test_oPos(10), test_oNeg(-6);
-
-        REQUIRE(test_neg.sub(test_pos).toString() == "-37");
-        REQUIRE(test_pos.sub(test_neg).toString() == "37");
-        REQUIRE(test_oPos.sub(test_pos).toString() == "-15");
-        REQUIRE(test_neg.sub(test_oNeg).toString() == "-6");
-
-        ReallyLongInt test_pos1(7), test_oPos1(4), test_neg1(-8), test_oNeg1(-10);
-        REQUIRE(test_pos1.sub(test_oPos1).toString() == "3");
-        REQUIRE(test_neg1.sub(test_oNeg1).toString() == "2");
-
-        ReallyLongInt test_pos2(15), test_neg2(4), test_sub = test_pos2 - test_neg2;
-        REQUIRE(test_sub.toString() == "11"); */
     }
 
     SECTION("mult"){
@@ -304,12 +210,28 @@ TEST_CASE("Testing ReallyLongInt Class"){
     }
 
     SECTION("div"){
-        ReallyLongInt test_divQuot, test_divRem, test_pos(4), test_neg(-3), test_oPos(2), test_oNeg(-9);
+        ReallyLongInt divQuot, divRem, pos(21), oPos(3), neg(-18), oNeg(-3);
         
-        test_pos.div(test_oPos, test_divQuot, test_divRem);
+        pos.div(oPos, divQuot, divRem);
+        REQUIRE(divQuot.toString() == "7");
+        REQUIRE(divRem.toString() == "0");
 
-        REQUIRE(test_divRem.toString() == "0");
-        REQUIRE(test_divQuot.toString() == "0");
+        neg.div(oNeg, divQuot, divRem);
+        REQUIRE(divQuot.toString() == "6");
+        REQUIRE(divRem.toString() == "0");
+
+        neg.div(oPos, divQuot, divRem);
+        REQUIRE(divQuot.toString() == "-6");
+        REQUIRE(divRem.toString() == "0");
+
+        oPos.div(oNeg, divQuot, divRem);
+        REQUIRE(divQuot.toString() == "-1");
+        REQUIRE(divRem.toString() == "0");
+
+        pos.div(neg, divQuot, divRem);
+        REQUIRE(divQuot.toString() == "-1");
+        REQUIRE(divRem.toString() == "3");
+
     }
 
 }

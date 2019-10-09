@@ -259,10 +259,10 @@ ReallyLongInt ReallyLongInt::absAdd(const ReallyLongInt& other) const{
         }
 
         if(partSum % 2 == 0){
-            (total)[k] = false; // deleted *
+            (total)[k] = false; 
         }
         else{
-            (total)[k] = true;  // deleted *
+            (total)[k] = true;  
         }
 
         partSum /= 2;
@@ -272,11 +272,12 @@ ReallyLongInt ReallyLongInt::absAdd(const ReallyLongInt& other) const{
     }
 
     ReallyLongInt result;
-    *result.digits = total; //added *
+    *result.digits = total;
     
     result.size = (std::max(size, other.size)+1);
     
     result.isNeg = false;
+    result.removeLeadingZeros();
 
     return result;
 
@@ -546,108 +547,79 @@ ReallyLongInt operator*(const ReallyLongInt& x, const ReallyLongInt& y){
 }
 
 void ReallyLongInt::absDiv(const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const{
-
-    /*ReallyLongInt zero, one(1);
-    long long d = 0;
-
-    vector<bool> copy(size, isNeg);
-    for(long long z = 0; z < size; z++){
-        (copy)[z] = (*digits)[z];
-    }
+    
+    ReallyLongInt zero, one(1), two(2), result;
+    result.size = size;
+    vector<bool> resDigits(size, false);
+    *result.digits = resDigits;
+    remainder = zero;
+    quotient = zero;
+    bool d = false;
 
     for(long long i = 0; i < size; i++){
-        remainder = remainder + remainder;
-        //cout<<"remainder size: "<<remainder.size<<" string: "<< remainder.toString()<<endl;
+        remainder = remainder * two;
+        
         if((*digits)[i]){
-            cout<<"A"<<endl;
             remainder = remainder + one;
         }
         
-        d = 0;
-        //cout<<remainder.toString()<<" <-remainder other-> "<<other.toString()<<endl;
-        //cout<<remainder.size<<" <-rsize osize-> "<<other.size<<endl;
-        //cout<<remainder.absGreater(other)<<" <-rGo? rEo?-> "<<remainder.equal(other)<<endl;
+        d = false;
 
-        while(remainder.absGreater(other) || remainder.equal(other)){
-            //cout<<"size before: "<<remainder.size<<endl;
-            //cout<<"rem before: "<< remainder.toString()<<endl;
-            remainder = remainder - other;
-            d++;
-            //cout<<"rem after: "<< remainder.toString()<<endl;
-            //cout<<"size after: "<<remainder.size<<endl;
-        } 
-        //cout<<"here?"<<endl;
-        if(d == 0){
-            cout<<"C"<<endl;
-            (copy)[i] = false;
+        if(remainder.absGreater(other) || remainder.equal(other) || remainder.equal(-other)){
+            remainder = remainder.absSub(other);
+            d = true;
         }
-        else if(d == 1){
-            cout<<"i: "<<i<<endl;
 
-            for(long long z = 0; z < size; z++){
-                cout << (copy)[z] << " ";
-            }
-            cout << endl;
-
-            (copy)[i] = true;
-            cout<<"E"<<endl;
-        }
-        
-        *quotient.digits = copy;
-        quotient.removeLeadingZeros();
-
-    }*/
-
-    ReallyLongInt q, comparison, partial;
-    vector<bool> result(size, false), dCopy = *digits;
-    
-    long long start = 0, end = 0, index = 0, divIndex = 0;
-
-    for(long long i = 0; i < size; i++){
-        //cout<<"First loop iteration at index "<<i<<endl;
-        (*comparison.digits) = vector<bool>(dCopy.begin()+start, dCopy.begin()+end);
-
-        if(other.absGreater(comparison)){
-            (*q.digits)[i] = false;
+        if(d){
+            (*result.digits)[i] = true;
         }
         else{
-            partial = comparison - other;
-            start += comparison.size - partial.size;
-            index = partial.size-1;
-            divIndex = end;
-            while(index >= 0 && divIndex >= 0){
-                //cout<<"while was called because index = "<<index<<" and divIndex = "<<divIndex<<endl;
-                (dCopy)[divIndex] = (*partial.digits)[index];
-
-                divIndex--;
-                index--;
-            }
-            (*q.digits)[i] = true;
+            (*result.digits)[i] = false;
         }
-        end++; 
+
     }
 
-    /*for(long long z = 0; z < size; z++){
-        cout << (*q.digits)[z] << " ";
-    }
-    cout << endl;*/
-
-    q.removeLeadingZeros();
-
-    remainder = partial;
-    quotient = q; 
+    quotient = result;
 
 }
 
 void ReallyLongInt::div(const ReallyLongInt& other, ReallyLongInt& quotient, ReallyLongInt& remainder) const{
-    absDiv(other, quotient, remainder);
+    if((!isNeg && !other.isNeg) || (isNeg && other.isNeg)){
+        absDiv(other, quotient, remainder);
+    }
+    else{
+        absDiv(other, quotient, remainder);
+        quotient.flipSign();
+    }
 }
 
-/*ReallyLongInt operator/(const ReallyLongInt& x, const ReallyLongInt& y){
-    x.div(y,)
-    return ;
+ReallyLongInt operator/(const ReallyLongInt& x, const ReallyLongInt& y){
+    ReallyLongInt quo, rem;
+    x.div(y, quo, rem);
+    return quo;
 }
 
 ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y){
-    return x.(y);
-}*/
+    ReallyLongInt quo, rem;
+    x.div(y, quo, rem);
+    return rem;
+}
+
+ReallyLongInt ReallyLongInt::exp(const ReallyLongInt e){
+    ReallyLongInt zero, one(1), two(2);
+    
+    if(e.equal(zero)){
+        return one;
+    }
+
+    if(!(*e.digits)[e.size-1]){
+        return this->exp(e/two).mult(this->exp(e/two));
+    }
+
+    return this->mult(this->exp(e/two).mult(this->exp(e/two)));
+}
+
+/*for(long long z = 0; z < size; z++){
+            cout << (*q.digits)[z] << " ";
+        }
+        cout << endl;*/
