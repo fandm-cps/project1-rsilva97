@@ -315,13 +315,12 @@ void ReallyLongInt::flipSign(){
 ReallyLongInt ReallyLongInt::absSub(const ReallyLongInt& other) const{
     vector<bool> total(std::max(size, other.size), isNeg), *top, *bottom;
     long long i, j, k, partial = 0, index;
-    ReallyLongInt result;
+    ReallyLongInt result, zero;
     result.size = std::max(size, other.size);
     result.isNeg = false;
 
     if(*digits == *(other.digits)){
-        result.size = 0;
-        return result;
+        return zero;
     }   
 
     if(size < other.size){
@@ -556,24 +555,40 @@ void ReallyLongInt::absDiv(const ReallyLongInt& other, ReallyLongInt& quotient, 
     quotient = zero;
     bool d = false;
 
+    //cout << "num: " << toStringBinary() << " denom: " << other.toStringBinary() << endl;
+
     for(long long i = 0; i < size; i++){
+        //cout << "i: " << i << endl;
+
+        //cout << "rem = rem*2. rem: " << remainder.toStringBinary() << endl;
         remainder = remainder * two;
+        //cout << "done. rem: " << remainder.toStringBinary() << endl;
         
         if((*digits)[i]){
+            //cout << "digits[" << i << "] = true, so rem = rem + 1. Rem: " << remainder.toStringBinary() << endl;
             remainder = remainder + one;
+            //cout << "done. rem: " << remainder.toStringBinary() << endl;
         }
         
         d = false;
 
-        if(remainder.absGreater(other) || remainder.equal(other) || remainder.equal(-other)){
+        //cout << "Testing for while loop: " << endl;
+        while(remainder.absGreater(other) || remainder.equal(other) || remainder.equal(-other)){
+            //cout << "|rem| >= |other|, so rem = rem-other." << endl;
+            //cout << "rem: " << remainder.toStringBinary() << endl;
             remainder = remainder.absSub(other);
+            //cout << "done. rem: " << remainder.toStringBinary() << endl;
             d = true;
         }
 
+        //cout << "d: " << d << endl;
+
         if(d){
+            //cout << "setting result[" << i << "] = true." << endl;
             (*result.digits)[i] = true;
         }
         else{
+            //cout << "setting result[" << i << "] = false." << endl;
             (*result.digits)[i] = false;
         }
 
@@ -613,10 +628,10 @@ ReallyLongInt ReallyLongInt::exp(const ReallyLongInt e){
     }
 
     if(!(*e.digits)[e.size-1]){
-        return this->exp(e/two).mult(this->exp(e/two));
+        return exp(e/two).mult(exp(e/two));
     }
 
-    return this->mult(this->exp(e/two).mult(this->exp(e/two)));
+    return mult(exp(e/two).mult(exp(e/two)));
 }
 
 /*for(long long z = 0; z < size; z++){
