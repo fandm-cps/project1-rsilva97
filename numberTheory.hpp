@@ -1,11 +1,11 @@
 #ifndef NUMBERTHEORY_HPP
 #define NUMBERTHEORY_HPP
 
-#include <cmath>
+#include "ReallyLongInt.hpp"
 
 class numberTheory{
     public:
-        ReallyLongInt extendedEuclid(const ReallyLongInt& a, const ReallyLongInt& b, ReallyLongInt* x, ReallyLongInt* y)
+        ReallyLongInt extendedEuclid(const ReallyLongInt& a, const ReallyLongInt& b, ReallyLongInt x, ReallyLongInt y);
 
 };
 
