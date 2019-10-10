@@ -13,6 +13,14 @@ TEST_CASE("Testing numberTheory Class"){
         result = test.extendedEuclid(fourteen, seven, x, y);
 
         REQUIRE(result.toString() == "7");
+        REQUIRE(x.toString() == "0");
+        REQUIRE(y.toString() == "1");
+
+        result = test.extendedEuclid(fourteen, eleven, x, y);
+
+        REQUIRE(result.toString() == "1");
+        REQUIRE(x.toString() == "4");
+        REQUIRE(y.toString() == "-5");
 
     }
     

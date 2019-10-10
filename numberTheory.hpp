@@ -5,7 +5,7 @@
 
 class numberTheory{
     public:
-        ReallyLongInt extendedEuclid(const ReallyLongInt& a, const ReallyLongInt& b, ReallyLongInt x, ReallyLongInt y);
+        ReallyLongInt extendedEuclid(const ReallyLongInt& a, const ReallyLongInt& b, ReallyLongInt &x, ReallyLongInt &y);
 
 };
 

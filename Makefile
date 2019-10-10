@@ -6,10 +6,10 @@ COVERAGE = --coverage
 all: catchdebug catchdebug1
 
 
-ReallyLongInt.o: ReallyLongInt.cpp
+ReallyLongInt.o: ReallyLongInt.cpp ReallyLongInt.hpp
 	$(CC) -c ReallyLongInt.cpp
 
-numberTheory.o: numberTheory.cpp
+numberTheory.o: numberTheory.cpp numberTheory.hpp
 	$(CC) -c numberTheory.cpp
 
 catchdebug: ReallyLongInt_TEST.cpp ReallyLongInt.o
