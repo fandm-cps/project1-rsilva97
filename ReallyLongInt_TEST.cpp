@@ -210,8 +210,10 @@ TEST_CASE("Testing ReallyLongInt Class"){
     }
 
     SECTION("div"){
-        ReallyLongInt divQuot, divRem, pos(21), oPos(3), neg(-18), oNeg(-3), thirteen(13), two(2), bigNum(439), oBigNum(67);
+        ReallyLongInt divQuot, divRem, pos(21), oPos(3), neg(-18), oNeg(-3), thirteen(13), two(2), bigNum(439), oBigNum(67), mod = oBigNum % thirteen;
         
+        REQUIRE(mod.toString() == "2");
+
         pos.div(oPos, divQuot, divRem);
         REQUIRE(divQuot.toString() == "7");
         REQUIRE(divRem.toString() == "0");
@@ -239,6 +241,8 @@ TEST_CASE("Testing ReallyLongInt Class"){
         bigNum.div(oBigNum, divQuot, divRem);
         REQUIRE(divQuot.toString() == "6");
         REQUIRE(divRem.toString() == "37"); 
+
+
 
     }
 
