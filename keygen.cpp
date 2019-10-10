@@ -7,10 +7,10 @@ using namespace std;
 
 int main(int argc, char* argv[]){
 
-    ReallyLongInt p(argv[1]), q(argv[2]), n, t, e, d, one(1), x, y, gcd;
+    ReallyLongInt zero, p(argv[1]), q(argv[2]), n, t, e, d, one(1), x, y, gcd;
     numberTheory num;
 
-    if(!p.isPrime || !q.isPrime){
+    if(!p.isPrime() || !q.isPrime()){
         cout << "ERROR: At least one of the numbers provided is not prime!" << endl;
         return 1;
     }
@@ -29,19 +29,20 @@ int main(int argc, char* argv[]){
 
     d = x;
 
-    if(x.isNeg){
+    if(zero.greater(x)){
         t = t + x;
     }
 
     ofstream myFile;
+    ofstream otherFile;
 
     myFile.open(argv[3]);
     myFile << e.toString() << " " << n.toString() << "\n";
-    myFile.close;
+    myFile.close();
 
-    myFile.open(argv[4]);
-    myFile << d.toString() << " " << n.toString() << "\n";
-    myFile.close;
+    otherFile.open(argv[4]);
+    otherFile << d.toString() << " " << n.toString() << "\n";
+    otherFile.close();
 
     return 0;
 }
