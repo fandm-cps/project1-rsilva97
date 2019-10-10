@@ -191,29 +191,35 @@ bool ReallyLongInt::absGreater(const ReallyLongInt& other) const{
 //Checkpoint 2
 
 void ReallyLongInt::removeLeadingZeros(void){
-    long long count = 0;
-    
-    for(long long i = 0; i < size; i++){
-        if((*digits)[i] == false){
-            count++;
-        }
-        else if((*digits)[i]){
-            break;
-        }
-    }
+    ReallyLongInt zero;
 
-    size -= count;
-    vector<bool> *tmp = new vector<bool>(size, isNeg);
-    long long j = 0;
-
-    for(long long k = count; k < (size+count); k++){
-        (*tmp)[j] = (*digits)[k];
-        j++;
+    if(toString() == "0"){
+        *this = zero;
     }
-    
-    delete digits;
-    digits = tmp;
-    
+    else{
+        long long count = 0;
+        
+        for(long long i = 0; i < size; i++){
+            if((*digits)[i] == false){
+                count++;
+            }
+            else if((*digits)[i]){
+                break;
+            }
+        }
+
+        size -= count;
+        vector<bool> *tmp = new vector<bool>(size, isNeg);
+        long long j = 0;
+
+        for(long long k = count; k < (size+count); k++){
+            (*tmp)[j] = (*digits)[k];
+            j++;
+        }
+        
+        delete digits;
+        digits = tmp;
+    }
 
 }
 
@@ -611,28 +617,65 @@ void ReallyLongInt::div(const ReallyLongInt& other, ReallyLongInt& quotient, Rea
 ReallyLongInt operator/(const ReallyLongInt& x, const ReallyLongInt& y){
     ReallyLongInt quo, rem;
     x.div(y, quo, rem);
+    quo.removeLeadingZeros();
     return quo;
 }
 
 ReallyLongInt operator%(const ReallyLongInt& x, const ReallyLongInt& y){
     ReallyLongInt quo, rem;
     x.div(y, quo, rem);
+    rem.removeLeadingZeros();
     return rem;
 }
 
+bool ReallyLongInt::isPrime(){
+    ReallyLongInt zero, one(1), two(2), copy(*this), quo, rem, test(3);
+
+    if(equal(one)){
+        return false;
+    }
+
+    if(equal(two)){
+        return true;
+    }
+
+    if(!(*digits)[size-1]){
+        return false;
+    }
+
+    while(!test.equal(copy)){
+        copy.div(test, quo, rem);
+
+        if(rem.equal(zero)){
+            return false;
+        }
+
+        test = test + one;
+    }
+
+    return true;
+}
+
 ReallyLongInt ReallyLongInt::exp(const ReallyLongInt e){
+    ReallyLongInt base(*this);
+
+    return expHelper(base, e);
+}
+
+ReallyLongInt ReallyLongInt::expHelper(ReallyLongInt base, ReallyLongInt e){
     ReallyLongInt zero, one(1), two(2);
-    
+
     if(e.equal(zero)){
         return one;
     }
 
     if(!(*e.digits)[e.size-1]){
-        return exp(e/two).mult(exp(e/two));
+        return expHelper(base, e/two) * expHelper(base, e/two);
     }
 
-    return mult(exp(e/two).mult(exp(e/two)));
+    return base * expHelper(base, e/two) * expHelper(base, e/two);
 }
+
 
 /*for(long long z = 0; z < size; z++){
             cout << (*q.digits)[z] << " ";

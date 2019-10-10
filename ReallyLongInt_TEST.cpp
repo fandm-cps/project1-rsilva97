@@ -210,7 +210,7 @@ TEST_CASE("Testing ReallyLongInt Class"){
     }
 
     SECTION("div"){
-        ReallyLongInt divQuot, divRem, pos(21), oPos(3), neg(-18), oNeg(-3), thirteen(13), two(2);
+        ReallyLongInt divQuot, divRem, pos(21), oPos(3), neg(-18), oNeg(-3), thirteen(13), two(2), bigNum(439), oBigNum(67);
         
         pos.div(oPos, divQuot, divRem);
         REQUIRE(divQuot.toString() == "7");
@@ -235,6 +235,36 @@ TEST_CASE("Testing ReallyLongInt Class"){
         thirteen.div(two, divQuot, divRem);
         REQUIRE(divQuot.toString() == "6");
         REQUIRE(divRem.toString() == "1");
+
+        bigNum.div(oBigNum, divQuot, divRem);
+        REQUIRE(divQuot.toString() == "6");
+        REQUIRE(divRem.toString() == "37"); 
+
+    }
+
+    SECTION("isPrime"){
+
+        ReallyLongInt zero, one(1), two(2), three(3), fifteen(15), bigEven(5498), smallPrime(11), bigPrime(7321);
+
+        REQUIRE(two.isPrime() == true);
+        REQUIRE(zero.isPrime() == false);
+        REQUIRE(bigEven.isPrime() == false);
+        REQUIRE(one.isPrime() == false);
+        REQUIRE(bigPrime.isPrime() == true);
+        REQUIRE(smallPrime.isPrime() == true);
+        REQUIRE(fifteen.isPrime() == false);
+        REQUIRE(three.isPrime() == true);
+
+    }
+
+    SECTION("exp"){
+        ReallyLongInt zero, two(2), three(3), five(5), negSeven(-7);
+
+        REQUIRE(two.exp(three).toString() == "8");
+        REQUIRE(two.exp(five).toString() == "32");
+        REQUIRE(five.exp(zero).toString() == "1");
+        REQUIRE(negSeven.exp(two).toString() == "49");
+        REQUIRE(negSeven.exp(three).toString() == "-343");
 
     }
 
