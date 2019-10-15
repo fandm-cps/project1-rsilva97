@@ -3,7 +3,7 @@ CFLAGS = -Wall
 DEBUG = -DDEBUG -g 
 COVERAGE = --coverage 
 
-all: catchdebug catchdebug1 keygen
+all: catchdebug catchdebug1 keygen encrypt decrypt
 
 ReallyLongInt.o: ReallyLongInt.cpp ReallyLongInt.hpp
 	$(CC) -c ReallyLongInt.cpp
@@ -21,10 +21,10 @@ keygen: keygen.cpp numberTheory.o ReallyLongInt.o
 	$(CC) -o keygen keygen.cpp numberTheory.cpp ReallyLongInt.o
 
 encrypt: encrypt.cpp numberTheory.o ReallyLongInt.o
-	$(CC) -o encrypt encrypt.cpp numberTheory.cpp
+	$(CC) -o encrypt encrypt.cpp numberTheory.cpp ReallyLongInt.o
 
 decrypt: decrypt.cpp numberTheory.o ReallyLongInt.o
-	$(CC) -o decrypt decrypt.cpp numberTheory.cpp
+	$(CC) -o decrypt decrypt.cpp numberTheory.cpp ReallyLongInt.o
 
 coverage: ReallyLongInt_TEST.cpp ReallyLongInt.cpp
 	$(CC) $(CFLAGE) $(COVERAGE) ReallyLongInt_TEST.cpp ReallyLongInt.cpp
