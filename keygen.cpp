@@ -7,7 +7,7 @@ using namespace std;
 
 int main(int argc, char* argv[]){
 
-    ReallyLongInt zero, p(argv[1]), q(argv[2]), n, t, e, d, one(1), x, y, gcd;
+    ReallyLongInt zero, p(argv[1]), q(argv[2]), n, t, e, d, one(1), x, y, gcd, result;
     numberTheory num;
 
     if(!p.isPrime() || !q.isPrime()){
@@ -27,7 +27,15 @@ int main(int argc, char* argv[]){
         }
     }
 
-    d = x;
+    for(ReallyLongInt dSearch(2); ; dSearch = dSearch + one){
+        
+        result = (e * dSearch) % t;
+
+        if(result.equal(one)){
+            d = dSearch;
+            break;
+        }
+    }
 
     if(zero.greater(x)){
         t = t + x;
