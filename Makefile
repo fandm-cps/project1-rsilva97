@@ -29,8 +29,8 @@ decrypt: decrypt.cpp ReallyLongInt.o
 coverage: ReallyLongInt_TEST.cpp ReallyLongInt.cpp
 	$(CC) $(CFLAGE) $(COVERAGE) ReallyLongInt_TEST.cpp ReallyLongInt.cpp
 
-coverage1: numberTheory_TEST.cpp numberTheory.cpp
-	$(CC) $(CFLAGE) $(COVERAGE) numberTheory_TEST.cpp numberTheory.cpp
+coverage1: numberTheory_TEST.cpp numberTheory.cpp ReallyLongInt.o
+	$(CC) $(CFLAGE) $(COVERAGE) numberTheory_TEST.cpp numberTheory.cpp ReallyLongInt.o
 
 clean:
 	rm *.o; rm ReallyLongInt_TEST; rm numberTheory_TEST
