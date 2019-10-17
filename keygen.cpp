@@ -29,6 +29,8 @@ int main(int argc, char* argv[]){
 
     d = x;
 
+    //add rules to make d pos
+
     if(zero.greater(x)){
         t = t + x;
     }

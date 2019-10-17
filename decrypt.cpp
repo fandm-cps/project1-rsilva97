@@ -43,14 +43,21 @@ int main(int argc, char* argv[]){
         outFile.open(argv[3], ios_base::out);
 
         if(inFile.is_open() && outFile.is_open()){
-            char ch;
-            long long ascii;
-            
-            while(inFile >> noskipws >> ch){
-                ascii = int(ch);
+            //char ch;
+            long long a, ascii;
+                //inFile >> ascii;
+            while(inFile >> a){
+                /*//ascii = int(ch);
+                //cout << ascii << endl;
                 ReallyLongInt y(ascii);
                 ReallyLongInt x(y.exp(d) % n);
                 outFile << char(stoll(x.toString(), nullptr, 10));
+                inFile >> ascii;*/
+
+                ReallyLongInt y(a);
+                ReallyLongInt x(y.exp(d) % n);
+                outFile << char(stoll(x.toString(), nullptr, 10));
+
             }
 
             inFile.close();

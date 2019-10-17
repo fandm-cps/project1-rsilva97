@@ -50,7 +50,7 @@ int main(int argc, char* argv[]){
                 ascii = int(ch);
                 ReallyLongInt x(ascii);
                 ReallyLongInt y(x.exp(e) % n);
-                outFile << char(stoll(y.toString(), nullptr, 10));
+                outFile << y.toString() << endl;
             }
 
             inFile.close();
